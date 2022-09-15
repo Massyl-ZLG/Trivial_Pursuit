@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "107490300766",
+    "project_id": "trivialpursuit-f31b5",
+    "storage_bucket": "trivialpursuit-f31b5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:107490300766:android:de8d9d62b1c2a348acf5cf",
+        "android_client_info": {
+          "package_name": "com.android.trivial_pursuit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "107490300766-lvjnvra8b205ui92il27b4qstkde6hi1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwUxd3qibvk3BIBYzS39ZW3kMwFDMEoNI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "107490300766-lvjnvra8b205ui92il27b4qstkde6hi1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

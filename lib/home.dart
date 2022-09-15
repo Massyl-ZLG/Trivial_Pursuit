@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:test_flutter/ranking_screen.dart';
+
+import 'profil_screen.dart';
+import 'ranking_screen.dart';
+import 'game_screen.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -9,7 +14,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
    int _selectedIndex=0;
-   final List<StatefulWidget> _pages = [ProfilScreen()];
+   final List<StatefulWidget> _pages = [RankingScreen(),GameScreen(),ProfilScreen()];
    //int _onItemTapped=0;
    void _onItemTapped(int index) {
      setState(() {
@@ -20,7 +25,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
         return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+        title: Text('Trivial Pursuit'),
       ),
       body: IndexedStack(
           index : _selectedIndex,
@@ -29,16 +34,16 @@ class _HomeState extends State<Home> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+            icon: Icon(Icons.grade),
+            label: 'Ranking',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
+            icon: Icon(Icons.sports_esports),
+            label: 'Game',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
+            icon: Icon(Icons.person),
+            label: 'Profil',
           ),
         ],
         currentIndex: _selectedIndex,

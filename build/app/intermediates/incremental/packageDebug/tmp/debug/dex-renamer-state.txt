@@ -1,4 +1,4 @@
-#Wed Sep 14 08:33:51 CEST 2022
-base.0=/home/mass/Téléchargements/LaCatho/test_flutter/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+#Thu Sep 15 17:24:09 CEST 2022
+base.0=/home/mass/Téléchargements/LaCatho/M2/Mobile/Trivial_Pursuit/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

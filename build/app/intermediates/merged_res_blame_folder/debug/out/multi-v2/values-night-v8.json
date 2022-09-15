@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/mass/Téléchargements/LaCatho/test_flutter/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-night-v8/values-night-v8.xml",
+            "outputFile": "/home/mass/Téléchargements/LaCatho/M2/Mobile/Trivial_Pursuit/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "/home/mass/Téléchargements/LaCatho/test_flutter/android/app/src/main/res/values-night/styles.xml",
+                    "source": "/home/mass/Téléchargements/LaCatho/M2/Mobile/Trivial_Pursuit/android/app/src/main/res/values-night/styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",
