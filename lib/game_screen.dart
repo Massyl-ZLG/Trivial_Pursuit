@@ -11,7 +11,7 @@ class _GameScreenState extends State<GameScreen> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-        body: Text('Game')
+        body: Text('Gamddddde')
     );
   }
 }

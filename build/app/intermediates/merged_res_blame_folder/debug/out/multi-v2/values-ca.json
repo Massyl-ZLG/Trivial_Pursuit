@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/mass/Téléchargements/LaCatho/M2/Mobile/Trivial_Pursuit/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-ca/values-ca.xml",
+            "outputFile": "C:\\Users\\sburd\\OneDrive\\Bureau\\M2\\Semestre1\\Trivial_Pursuit\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ca\\values-ca.xml",
             "map": [
                 {
-                    "source": "/home/mass/.gradle/caches/transforms-3/c2e9ad515cc5f3941095b2e3efe1242d/transformed/jetified-play-services-base-18.0.1/res/values-ca/values.xml",
+                    "source": "C:\\Users\\sburd\\.gradle\\caches\\transforms-3\\c2e9ad515cc5f3941095b2e3efe1242d\\transformed\\jetified-play-services-base-18.0.1\\res\\values-ca\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "/home/mass/.gradle/caches/transforms-3/91f744c1c21fcfe281b2bb04dda7e85b/transformed/core-1.6.0/res/values-ca/values-ca.xml",
+                    "source": "C:\\Users\\sburd\\.gradle\\caches\\transforms-3\\91f744c1c21fcfe281b2bb04dda7e85b\\transformed\\core-1.6.0\\res\\values-ca\\values-ca.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -38,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "/home/mass/.gradle/caches/transforms-3/65cc1d410cae6c32546687924703567f/transformed/jetified-play-services-basement-18.1.0/res/values-ca/values.xml",
+                    "source": "C:\\Users\\sburd\\.gradle\\caches\\transforms-3\\65cc1d410cae6c32546687924703567f\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-ca\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
