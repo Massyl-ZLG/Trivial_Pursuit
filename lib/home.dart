@@ -1,8 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:test_flutter/ranking_screen.dart';
 
 import 'profil_screen.dart';
-import 'ranking_screen.dart';
 import 'game_screen.dart';
 
 class Home extends StatefulWidget {
@@ -13,9 +13,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  final user = FirebaseAuth.instance.currentUser;
+
    int _selectedIndex=0;
    final List<StatefulWidget> _pages = [RankingScreen(),GameScreen(),ProfilScreen()];
-   //int _onItemTapped=0;
    void _onItemTapped(int index) {
      setState(() {
        _selectedIndex = index;
@@ -23,7 +25,7 @@ class _HomeState extends State<Home> {
    }
    @override
   Widget build(BuildContext context) {
-        return Scaffold(
+     return Scaffold(
       appBar: AppBar(
         title: Text('Trivial Pursuit'),
       ),
