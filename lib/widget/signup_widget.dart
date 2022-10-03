@@ -24,12 +24,13 @@ class _SignUpWidgetState extends State<SignUpWidget> {
   final formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-
+  final confirmPasswordController =  TextEditingController();
 
   @override
   void dispose(){
     emailController.dispose();
     passwordController.dispose();
+    confirmPasswordController.dispose();
     super.dispose();
   }
 
@@ -62,10 +63,21 @@ class _SignUpWidgetState extends State<SignUpWidget> {
               decoration: const InputDecoration(label  : Text('Password') ),
               obscureText: true,
               autovalidateMode: AutovalidateMode.onUserInteraction,
-              validator: (passsword) =>
-              passsword != null && passsword.length < 6
+              validator: (password) =>
+              password != null && password.length < 6
                   ? 'Enter min. 6 characters'
                   : null,
+            ),
+            const SizedBox(height: 40),
+            TextFormField(
+              controller: confirmPasswordController,
+              cursorColor: Colors.white,
+              textInputAction: TextInputAction.next,
+              decoration: const InputDecoration(label  : Text('Confirm Password') ),
+              obscureText: true,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: (password) =>
+              password != null && passwordController.text.trim() != password ? 'Not the same' : null,
             ),
             const SizedBox(height: 20),
             ElevatedButton.icon(

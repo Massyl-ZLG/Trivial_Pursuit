@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:test_flutter/page/auth_page.dart';
+import 'package:test_flutter/page/verifiy_email_page.dart';
 import 'package:test_flutter/utils.dart';
 
 import 'home.dart';
@@ -41,6 +42,7 @@ class MyHomePage extends StatelessWidget {
             }else if(snapshot.hasError){
               return const Center(child: Text('Something went wrong  '));
             }else if(snapshot.hasData){
+              return VerifyEmailPage();
               return const Home();
             }else{
               return  AuthPage();
