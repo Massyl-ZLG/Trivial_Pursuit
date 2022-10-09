@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -23,12 +24,20 @@ class SignUpWidget extends StatefulWidget {
 class _SignUpWidgetState extends State<SignUpWidget> {
   final formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
+  final lastnameController = TextEditingController();
+  final firstnameController = TextEditingController();
+  final ageController = TextEditingController();
+  final nicknameController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController =  TextEditingController();
 
   @override
   void dispose(){
     emailController.dispose();
+    lastnameController.dispose();
+    firstnameController.dispose();
+    ageController.dispose();
+    nicknameController.dispose();
     passwordController.dispose();
     confirmPasswordController.dispose();
     super.dispose();
@@ -44,10 +53,59 @@ class _SignUpWidgetState extends State<SignUpWidget> {
           children: [
             const SizedBox(height: 40),
             TextFormField(
+              controller: lastnameController,
+              cursorColor: Colors.white,
+              textInputAction: TextInputAction.next,
+              decoration: const InputDecoration( label  : Text('Lastname *') ),
+              obscureText: false,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: (lastname) =>
+              lastname == null
+                  ? 'Enter a valid lastname'
+                  : null,
+            ),
+            const SizedBox(height: 40),
+            TextFormField(
+              controller: firstnameController,
+              cursorColor: Colors.white,
+              textInputAction: TextInputAction.next,
+              decoration: const InputDecoration( label  : Text('Firstname *') ),
+              obscureText: false,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: (firstname) =>
+              firstname == null
+                  ? 'Enter a valid firstname'
+                  : null,
+            ),
+            const SizedBox(height: 40),
+            TextFormField(
+              keyboardType: TextInputType.number,
+              controller: ageController,
+              cursorColor: Colors.white,
+              textInputAction: TextInputAction.next,
+              decoration: const InputDecoration( label  : Text('Age ') ),
+              obscureText: false,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+            ),
+            const SizedBox(height: 40),
+            TextFormField(
+              controller: nicknameController,
+              cursorColor: Colors.white,
+              textInputAction: TextInputAction.next,
+              decoration: const InputDecoration( label  : Text('Nickname *') ),
+              obscureText: false,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: (nickname) =>
+              nickname == null
+                  ? 'Enter a valid nickname'
+                  : null,
+            ),
+            const SizedBox(height: 40),
+            TextFormField(
               controller: emailController,
               cursorColor: Colors.white,
               textInputAction: TextInputAction.next,
-              decoration: const InputDecoration( label  : Text('Email') ),
+              decoration: const InputDecoration( label  : Text('Email *') ),
               obscureText: false,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (email) =>
@@ -60,7 +118,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
               controller: passwordController,
               cursorColor: Colors.white,
               textInputAction: TextInputAction.next,
-              decoration: const InputDecoration(label  : Text('Password') ),
+              decoration: const InputDecoration(label  : Text('Password *') ),
               obscureText: true,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (password) =>
@@ -73,7 +131,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
               controller: confirmPasswordController,
               cursorColor: Colors.white,
               textInputAction: TextInputAction.next,
-              decoration: const InputDecoration(label  : Text('Confirm Password') ),
+              decoration: const InputDecoration(label  : Text('Confirm Password *') ),
               obscureText: true,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (password) =>
@@ -129,12 +187,35 @@ class _SignUpWidgetState extends State<SignUpWidget> {
       await FirebaseAuth.instance.createUserWithEmailAndPassword (
         email : emailController.text.trim(),
         password : passwordController.text.trim(),
-      );
+      ).then((cred) =>  {
+          createUser(
+            uid: cred.user?.uid,
+            lastname: lastnameController.text.trim(),
+            firstname: firstnameController.text.trim(),
+            age : ageController.text.trim(),
+            email: emailController.text.trim(),
+            nickname: nicknameController.text.trim()
+          )
+      });
+
     } on FirebaseAuthException catch (e) {
       print(e);
       Utils.showSnackBar(e.message);
     }
 
     navigatorKey.currentState!.popUntil((route) => route.isFirst);
+  }
+
+  Future createUser({required String? uid , required String lastname , required String firstname ,  age ,  required String email , required String nickname}) async {
+    final docUser =   FirebaseFirestore.instance.collection('users').doc(uid);
+    final json = {
+      'last_name' : lastname,
+      'first_name' : firstname,
+      'age' :  age,
+      'nickname' : nickname,
+      'email' : email,
+    };
+
+    await docUser.set(json);
   }
 }

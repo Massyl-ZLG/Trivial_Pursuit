@@ -42,7 +42,7 @@ class MyHomePage extends StatelessWidget {
             }else if(snapshot.hasError){
               return const Center(child: Text('Something went wrong  '));
             }else if(snapshot.hasData){
-              return VerifyEmailPage();
+              return Home(); // VerifyEmailPage();
               return const Home();
             }else{
               return  AuthPage();

@@ -15,7 +15,7 @@ class VerifyEmailPage extends StatefulWidget {
 }
 
 class _VerifyEmailPageState extends State<VerifyEmailPage> {
-  bool isEmailVerified = false;
+  bool isEmailVerified = true;
   bool canResendEmail = false;
   Timer? timer ;
 
