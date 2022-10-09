@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:test_flutter/model/user.dart' as userModel;
 
 import '../main.dart';
 import '../utils.dart';
@@ -26,7 +27,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
   final emailController = TextEditingController();
   final lastnameController = TextEditingController();
   final firstnameController = TextEditingController();
-  final ageController = TextEditingController();
+  final ageController = TextEditingController() ;
   final nicknameController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController =  TextEditingController();
@@ -192,7 +193,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
             uid: cred.user?.uid,
             lastname: lastnameController.text.trim(),
             firstname: firstnameController.text.trim(),
-            age : ageController.text.trim(),
+            age : 50,
             email: emailController.text.trim(),
             nickname: nicknameController.text.trim()
           )
@@ -208,13 +209,25 @@ class _SignUpWidgetState extends State<SignUpWidget> {
 
   Future createUser({required String? uid , required String lastname , required String firstname ,  age ,  required String email , required String nickname}) async {
     final docUser =   FirebaseFirestore.instance.collection('users').doc(uid);
-    final json = {
-      'last_name' : lastname,
-      'first_name' : firstname,
-      'age' :  age,
-      'nickname' : nickname,
-      'email' : email,
-    };
+    // final json = {
+    //   'last_name' : lastname,
+    //   'first_name' : firstname,
+    //   'age' :  age,
+    //   'nickname' : nickname,
+    //   'email' : email,
+    // };
+
+    final userModel.User user  = userModel.User (
+      id: docUser.id,
+      lastname: lastname,
+      firstname: firstname,
+      age: age,
+      nickname: nickname,
+      email: email
+    );
+
+    final json = user.toJson();
+
 
     await docUser.set(json);
   }

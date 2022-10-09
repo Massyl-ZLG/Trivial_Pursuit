@@ -1,17 +1,20 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:test_flutter/model/user.dart' as userModel;
 
 class ProfilScreen extends StatefulWidget {
   const ProfilScreen({Key? key}) : super(key: key);
 
   @override
   State<ProfilScreen> createState() => _ProfilScreenState();
+
+
 }
 
 class _ProfilScreenState extends State<ProfilScreen> {
   @override
-  Widget build(BuildContext context) {
-    return Column(
+  Widget build(BuildContext context)  =>  Column(
       children: <Widget>[
         Stack(
           clipBehavior: Clip.none,
@@ -21,9 +24,9 @@ class _ProfilScreenState extends State<ProfilScreen> {
               width: double.infinity,
                 height: MediaQuery.of(context).size.height /3,
                 fit: BoxFit.cover,
-                image: NetworkImage(
+                image: const NetworkImage(
                     'https://img1.psthc.fr/62/00_4be196a54cf0a.PNG')),
-            Positioned(
+            const Positioned(
                 bottom: -70.0,
                 child: CircleAvatar(
                   radius: 80,
@@ -32,28 +35,28 @@ class _ProfilScreenState extends State<ProfilScreen> {
                       'https://avatars.githubusercontent.com/u/81617366?v=4'),))
           ],
         ),
-        SizedBox(height: 60,),
-        ListTile(
+        const SizedBox(height: 60,),
+        const ListTile(
           title: Center(child: Text('Massyl Zelleg')),
           subtitle: Center(child: Text('Devops Ingineer')),
         ),
         TextButton(
             onPressed: (){},
             child: Text('test text button')),
-        Center(
+        const Center(
           child: ListTile(
             title: Text('About me'),
             subtitle: Text('blablablabla'),
           ),
         ),
 
-        SizedBox(height: 40),
+        const SizedBox(height: 40),
         ElevatedButton.icon(
           style: ElevatedButton.styleFrom(
-            minimumSize: Size.fromHeight(50),
+            minimumSize: const Size.fromHeight(50),
           ),
-          icon: Icon(Icons.arrow_back  , size: 32),
-          label : Text(
+          icon: const Icon(Icons.arrow_back  , size: 32),
+          label : const Text(
             'Sign Out',
             style: TextStyle(fontSize : 24),
           ),
@@ -62,5 +65,13 @@ class _ProfilScreenState extends State<ProfilScreen> {
         )
       ],
     );
-  }
+
+
+  Stream<List<userModel.User>> readUsers() => FirebaseFirestore.instance
+      .collection('users')
+      .snapshots()
+      .map((snapshot) =>
+      snapshot.docs.map((doc) => userModel.User.fromJson(doc.data())).toList());
+
 }
+
