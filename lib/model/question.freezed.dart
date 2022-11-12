@@ -25,7 +25,7 @@ mixin _$Question {
   String get difficulty => throw _privateConstructorUsedError;
   String get question => throw _privateConstructorUsedError;
   String get correct_answer => throw _privateConstructorUsedError;
-  String get incorrect_answers => throw _privateConstructorUsedError;
+  List<String> get incorrect_answers => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,7 +43,7 @@ abstract class $QuestionCopyWith<$Res> {
       String difficulty,
       String question,
       String correct_answer,
-      String incorrect_answers});
+      List<String> incorrect_answers});
 }
 
 /// @nodoc
@@ -87,7 +87,7 @@ class _$QuestionCopyWithImpl<$Res> implements $QuestionCopyWith<$Res> {
       incorrect_answers: incorrect_answers == freezed
           ? _value.incorrect_answers
           : incorrect_answers // ignore: cast_nullable_to_non_nullable
-              as String,
+              as List<String>,
     ));
   }
 }
@@ -104,7 +104,7 @@ abstract class _$$_QuestionCopyWith<$Res> implements $QuestionCopyWith<$Res> {
       String difficulty,
       String question,
       String correct_answer,
-      String incorrect_answers});
+      List<String> incorrect_answers});
 }
 
 /// @nodoc
@@ -148,9 +148,9 @@ class __$$_QuestionCopyWithImpl<$Res> extends _$QuestionCopyWithImpl<$Res>
           : correct_answer // ignore: cast_nullable_to_non_nullable
               as String,
       incorrect_answers: incorrect_answers == freezed
-          ? _value.incorrect_answers
+          ? _value._incorrect_answers
           : incorrect_answers // ignore: cast_nullable_to_non_nullable
-              as String,
+              as List<String>,
     ));
   }
 }
@@ -164,7 +164,8 @@ class _$_Question implements _Question {
       required this.difficulty,
       required this.question,
       required this.correct_answer,
-      required this.incorrect_answers});
+      required final List<String> incorrect_answers})
+      : _incorrect_answers = incorrect_answers;
 
   factory _$_Question.fromJson(Map<String, dynamic> json) =>
       _$$_QuestionFromJson(json);
@@ -179,8 +180,12 @@ class _$_Question implements _Question {
   final String question;
   @override
   final String correct_answer;
+  final List<String> _incorrect_answers;
   @override
-  final String incorrect_answers;
+  List<String> get incorrect_answers {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_incorrect_answers);
+  }
 
   @override
   String toString() {
@@ -200,7 +205,7 @@ class _$_Question implements _Question {
             const DeepCollectionEquality()
                 .equals(other.correct_answer, correct_answer) &&
             const DeepCollectionEquality()
-                .equals(other.incorrect_answers, incorrect_answers));
+                .equals(other._incorrect_answers, _incorrect_answers));
   }
 
   @JsonKey(ignore: true)
@@ -212,7 +217,7 @@ class _$_Question implements _Question {
       const DeepCollectionEquality().hash(difficulty),
       const DeepCollectionEquality().hash(question),
       const DeepCollectionEquality().hash(correct_answer),
-      const DeepCollectionEquality().hash(incorrect_answers));
+      const DeepCollectionEquality().hash(_incorrect_answers));
 
   @JsonKey(ignore: true)
   @override
@@ -234,7 +239,7 @@ abstract class _Question implements Question {
       required final String difficulty,
       required final String question,
       required final String correct_answer,
-      required final String incorrect_answers}) = _$_Question;
+      required final List<String> incorrect_answers}) = _$_Question;
 
   factory _Question.fromJson(Map<String, dynamic> json) = _$_Question.fromJson;
 
@@ -249,7 +254,7 @@ abstract class _Question implements Question {
   @override
   String get correct_answer;
   @override
-  String get incorrect_answers;
+  List<String> get incorrect_answers;
   @override
   @JsonKey(ignore: true)
   _$$_QuestionCopyWith<_$_Question> get copyWith =>

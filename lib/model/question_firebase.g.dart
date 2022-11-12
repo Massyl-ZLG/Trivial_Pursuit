@@ -8,7 +8,9 @@ part of 'question_firebase.dart';
 
 _$_QuestionFirebase _$$_QuestionFirebaseFromJson(Map<String, dynamic> json) =>
     _$_QuestionFirebase(
-      results: json['results'] as List<Question>,
+      results: (json['results'] as List<dynamic>)
+          .map((e) => Question.fromJson(e as Map<String, dynamic>))
+          .toList(),
       date: json['date'] as String,
     );
 
