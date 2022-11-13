@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../../../model/question_api_response.dart';
+
 class QuestionFirebase {
   static final FirebaseFirestore _firebaseFirestore =
       FirebaseFirestore.instance;
@@ -11,14 +13,14 @@ class QuestionFirebase {
 
   String _getDate(){
     DateTime today = DateTime.now();
-    return '${today.day}/${today.month}/${today.year}'
+    return '${today.day}/${today.month}/${today.year}';
   }
 
   static QuestionFirebase getInstance(){
     if(_instance == null){
       _questionRef = _firebaseFirestore
           .collection('questionOfTheDay')
-          .withConverter<QuestionFirebase>(fromFirestore: (snapshot , _) =>
+          .withConverter<QuestionApiResponse>(fromFirestore: (snapshot , _) =>
               QuestionApiResponse.fromJson(snapshot.data()!),
           toFirestore: (object , _) => object.toJson());
       _instance = QuestionFirebase._();

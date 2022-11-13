@@ -1,6 +1,9 @@
 import 'package:test_flutter/data/dataSources/remote/question_api.dart';
 import 'package:test_flutter/data/dataSources/remote/question_firebase.dart';
 
+import '../../../model/question.dart';
+import '../../../model/question_api_response.dart';
+
 class QuestionRepository {
   static QuestionRepository? _instance ;
 
@@ -17,7 +20,12 @@ class QuestionRepository {
 
   String _getDate(){
     DateTime today = DateTime.now();
-    return '${today.day}/${today.month}/${today.year}'
+    return '${today.day}/${today.month}/${today.year}';
+  }
+
+  Future<List<Question>> getFilteredQuestions() async {
+      return await QuestionApi.getInstance();
+
   }
 
   Future<List<Question>> getQuestionsOfTheDay() async {

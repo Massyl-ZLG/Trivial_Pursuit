@@ -45,6 +45,7 @@ dependencies:
   freezed_annotation: ^2.0.1
   json_serializable: ^6.2.0
   http: ^0.13.5
+  mason: ^0.1.0-dev.37
 
 dev_dependencies:
   flutter_test:

@@ -1,6 +1,9 @@
 import 'dart:convert';
 import'package:http/http.dart' as http;
 
+import '../../../model/question.dart';
+import '../../../model/question_api_response.dart';
+
 class QuestionApi {
   final String _baseUrl = "opentdb.com";
 
