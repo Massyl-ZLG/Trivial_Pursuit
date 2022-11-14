@@ -6,6 +6,7 @@ import 'package:test_flutter/page/game/bloc/game_cubit.dart';
 
 import 'bloc/game_state.dart';
 
+
 class GamePage extends StatefulWidget {
   const GamePage({Key? key}) : super(key: key);
 
@@ -34,8 +35,19 @@ class _GamePageState extends State<GamePage> {
                           return cubit!..fetchQuestion();
                     },
                     child: BlocConsumer<GameCubit, QuestionState>(
-                        listener: (context, state) {},
-                        builder: (context, state) {},
+                        listener: (context, state) {
+                          if(state == Initial){
+                            print('LOl');
+                          }
+                        },
+                        builder: (context, state) {
+                          return  TextField(
+                            cursorColor: Colors.white,
+                            textInputAction: TextInputAction.next,
+                            decoration: const InputDecoration(label  : Text('Password') ),
+                            obscureText: true,
+                          );
+                        },
                     )
                 )
             )
