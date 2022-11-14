@@ -25,6 +25,7 @@ class QuestionRepository {
 
   Future<List<Question>> getFilteredQuestions() async {
       return await QuestionApi.getInstance();
+      //return await QuestionApi.getInstance();
 
   }
 
@@ -41,6 +42,7 @@ class QuestionRepository {
 
       //Delete le documents dans firestore
       //Put objectToReturn a firestore
+      await _questionsFirestore.insertQuestions(objectToReturn);
       return questions;
     }
   }

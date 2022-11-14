@@ -30,7 +30,8 @@ class QuestionFirebase {
 
 
   Future<void> insertQuestions(QuestionApiResponse questions) async {
-    await _questionRef.add(questions);
+     await _questionRef.add(questions);
+    //await _questionRef.doc(_getDate()).add(questions);
   }
 
   Future<QuestionApiResponse?> get() async {
