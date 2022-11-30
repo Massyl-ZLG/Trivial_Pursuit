@@ -47,6 +47,7 @@ dependencies:
   http: ^0.13.5
   mason: ^0.1.0-dev.37
   flutter_bloc: ^8.0.1
+  swiping_card_deck: 1.2.0
 
 dev_dependencies:
   flutter_test:

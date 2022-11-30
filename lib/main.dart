@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:test_flutter/page/auth_page.dart';
+import 'package:test_flutter/page/game/game_page.dart';
 import 'package:test_flutter/page/verifiy_email_page.dart';
 import 'package:test_flutter/utils.dart';
 
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: title,
       navigatorKey: navigatorKey,
-      home:  MyHomePage(),
+      home:  GamePage(),
     );
 
 }

@@ -24,9 +24,7 @@ class QuestionRepository {
   }
 
   Future<List<Question>> getFilteredQuestions() async {
-      return await QuestionApi.getInstance();
-      //return await QuestionApi.getInstance();
-
+      return await _questionApi.getQuestionsOfTheDay();
   }
 
   Future<List<Question>> getQuestionsOfTheDay() async {
