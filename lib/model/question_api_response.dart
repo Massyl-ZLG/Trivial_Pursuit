@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:test_flutter/model/question.dart';
+
+import 'question.dart';
 
  
 part 'question_api_response.freezed.dart';
@@ -13,7 +14,6 @@ class QuestionApiResponse with _$QuestionApiResponse {
   /// {@macro question_api_response}
   const factory QuestionApiResponse({ 
     required List<Question> results,
-    required String date,
   }) = _QuestionApiResponse;
   
     /// Creates a QuestionApiResponse from Json map

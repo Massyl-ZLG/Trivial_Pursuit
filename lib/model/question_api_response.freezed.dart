@@ -21,7 +21,6 @@ QuestionApiResponse _$QuestionApiResponseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$QuestionApiResponse {
   List<Question> get results => throw _privateConstructorUsedError;
-  String get date => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +33,7 @@ abstract class $QuestionApiResponseCopyWith<$Res> {
   factory $QuestionApiResponseCopyWith(
           QuestionApiResponse value, $Res Function(QuestionApiResponse) then) =
       _$QuestionApiResponseCopyWithImpl<$Res>;
-  $Res call({List<Question> results, String date});
+  $Res call({List<Question> results});
 }
 
 /// @nodoc
@@ -49,17 +48,12 @@ class _$QuestionApiResponseCopyWithImpl<$Res>
   @override
   $Res call({
     Object? results = freezed,
-    Object? date = freezed,
   }) {
     return _then(_value.copyWith(
       results: results == freezed
           ? _value.results
           : results // ignore: cast_nullable_to_non_nullable
               as List<Question>,
-      date: date == freezed
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
@@ -71,7 +65,7 @@ abstract class _$$_QuestionApiResponseCopyWith<$Res>
           $Res Function(_$_QuestionApiResponse) then) =
       __$$_QuestionApiResponseCopyWithImpl<$Res>;
   @override
-  $Res call({List<Question> results, String date});
+  $Res call({List<Question> results});
 }
 
 /// @nodoc
@@ -88,17 +82,12 @@ class __$$_QuestionApiResponseCopyWithImpl<$Res>
   @override
   $Res call({
     Object? results = freezed,
-    Object? date = freezed,
   }) {
     return _then(_$_QuestionApiResponse(
       results: results == freezed
           ? _value._results
           : results // ignore: cast_nullable_to_non_nullable
               as List<Question>,
-      date: date == freezed
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
@@ -106,8 +95,7 @@ class __$$_QuestionApiResponseCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_QuestionApiResponse implements _QuestionApiResponse {
-  const _$_QuestionApiResponse(
-      {required final List<Question> results, required this.date})
+  const _$_QuestionApiResponse({required final List<Question> results})
       : _results = results;
 
   factory _$_QuestionApiResponse.fromJson(Map<String, dynamic> json) =>
@@ -121,11 +109,8 @@ class _$_QuestionApiResponse implements _QuestionApiResponse {
   }
 
   @override
-  final String date;
-
-  @override
   String toString() {
-    return 'QuestionApiResponse(results: $results, date: $date)';
+    return 'QuestionApiResponse(results: $results)';
   }
 
   @override
@@ -133,16 +118,13 @@ class _$_QuestionApiResponse implements _QuestionApiResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_QuestionApiResponse &&
-            const DeepCollectionEquality().equals(other._results, _results) &&
-            const DeepCollectionEquality().equals(other.date, date));
+            const DeepCollectionEquality().equals(other._results, _results));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_results),
-      const DeepCollectionEquality().hash(date));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_results));
 
   @JsonKey(ignore: true)
   @override
@@ -159,17 +141,14 @@ class _$_QuestionApiResponse implements _QuestionApiResponse {
 }
 
 abstract class _QuestionApiResponse implements QuestionApiResponse {
-  const factory _QuestionApiResponse(
-      {required final List<Question> results,
-      required final String date}) = _$_QuestionApiResponse;
+  const factory _QuestionApiResponse({required final List<Question> results}) =
+      _$_QuestionApiResponse;
 
   factory _QuestionApiResponse.fromJson(Map<String, dynamic> json) =
       _$_QuestionApiResponse.fromJson;
 
   @override
   List<Question> get results;
-  @override
-  String get date;
   @override
   @JsonKey(ignore: true)
   _$$_QuestionApiResponseCopyWith<_$_QuestionApiResponse> get copyWith =>

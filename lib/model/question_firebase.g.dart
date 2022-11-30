@@ -11,11 +11,9 @@ _$_QuestionFirebase _$$_QuestionFirebaseFromJson(Map<String, dynamic> json) =>
       results: (json['results'] as List<dynamic>)
           .map((e) => Question.fromJson(e as Map<String, dynamic>))
           .toList(),
-      date: json['date'] as String,
     );
 
 Map<String, dynamic> _$$_QuestionFirebaseToJson(_$_QuestionFirebase instance) =>
     <String, dynamic>{
       'results': instance.results,
-      'date': instance.date,
     };

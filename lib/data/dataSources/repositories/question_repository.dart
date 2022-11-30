@@ -34,8 +34,7 @@ class QuestionRepository {
     }else {
       List<Question> questions = await getFilteredQuestions();
       QuestionApiResponse objectToReturn = QuestionApiResponse(
-        results : questions,
-        date : _getDate()
+        results : questions
       );
 
       //Delete le documents dans firestore

@@ -21,7 +21,6 @@ QuestionFirebase _$QuestionFirebaseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$QuestionFirebase {
   List<Question> get results => throw _privateConstructorUsedError;
-  String get date => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +33,7 @@ abstract class $QuestionFirebaseCopyWith<$Res> {
   factory $QuestionFirebaseCopyWith(
           QuestionFirebase value, $Res Function(QuestionFirebase) then) =
       _$QuestionFirebaseCopyWithImpl<$Res>;
-  $Res call({List<Question> results, String date});
+  $Res call({List<Question> results});
 }
 
 /// @nodoc
@@ -49,17 +48,12 @@ class _$QuestionFirebaseCopyWithImpl<$Res>
   @override
   $Res call({
     Object? results = freezed,
-    Object? date = freezed,
   }) {
     return _then(_value.copyWith(
       results: results == freezed
           ? _value.results
           : results // ignore: cast_nullable_to_non_nullable
               as List<Question>,
-      date: date == freezed
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
@@ -71,7 +65,7 @@ abstract class _$$_QuestionFirebaseCopyWith<$Res>
           _$_QuestionFirebase value, $Res Function(_$_QuestionFirebase) then) =
       __$$_QuestionFirebaseCopyWithImpl<$Res>;
   @override
-  $Res call({List<Question> results, String date});
+  $Res call({List<Question> results});
 }
 
 /// @nodoc
@@ -88,17 +82,12 @@ class __$$_QuestionFirebaseCopyWithImpl<$Res>
   @override
   $Res call({
     Object? results = freezed,
-    Object? date = freezed,
   }) {
     return _then(_$_QuestionFirebase(
       results: results == freezed
           ? _value._results
           : results // ignore: cast_nullable_to_non_nullable
               as List<Question>,
-      date: date == freezed
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
@@ -106,8 +95,7 @@ class __$$_QuestionFirebaseCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_QuestionFirebase implements _QuestionFirebase {
-  const _$_QuestionFirebase(
-      {required final List<Question> results, required this.date})
+  const _$_QuestionFirebase({required final List<Question> results})
       : _results = results;
 
   factory _$_QuestionFirebase.fromJson(Map<String, dynamic> json) =>
@@ -121,11 +109,8 @@ class _$_QuestionFirebase implements _QuestionFirebase {
   }
 
   @override
-  final String date;
-
-  @override
   String toString() {
-    return 'QuestionFirebase(results: $results, date: $date)';
+    return 'QuestionFirebase(results: $results)';
   }
 
   @override
@@ -133,16 +118,13 @@ class _$_QuestionFirebase implements _QuestionFirebase {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_QuestionFirebase &&
-            const DeepCollectionEquality().equals(other._results, _results) &&
-            const DeepCollectionEquality().equals(other.date, date));
+            const DeepCollectionEquality().equals(other._results, _results));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_results),
-      const DeepCollectionEquality().hash(date));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_results));
 
   @JsonKey(ignore: true)
   @override
@@ -158,17 +140,14 @@ class _$_QuestionFirebase implements _QuestionFirebase {
 }
 
 abstract class _QuestionFirebase implements QuestionFirebase {
-  const factory _QuestionFirebase(
-      {required final List<Question> results,
-      required final String date}) = _$_QuestionFirebase;
+  const factory _QuestionFirebase({required final List<Question> results}) =
+      _$_QuestionFirebase;
 
   factory _QuestionFirebase.fromJson(Map<String, dynamic> json) =
       _$_QuestionFirebase.fromJson;
 
   @override
   List<Question> get results;
-  @override
-  String get date;
   @override
   @JsonKey(ignore: true)
   _$$_QuestionFirebaseCopyWith<_$_QuestionFirebase> get copyWith =>
