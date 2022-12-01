@@ -13,7 +13,7 @@ class QuestionFirebase {
 
   String _getDate(){
     DateTime today = DateTime.now();
-    return '${today.day}/${today.month}/${today.year}';
+    return '${today.year}-${today.month}-${today.day}';
   }
 
   static QuestionFirebase getInstance(){
@@ -30,8 +30,8 @@ class QuestionFirebase {
 
 
   Future<void> insertQuestions(QuestionApiResponse questions) async {
-     await _questionRef.add(questions);
-    //await _questionRef.doc(_getDate()).add(questions);
+     //await _questionRef.add(questions);
+      await _questionRef.doc(_getDate()).set(questions);
   }
 
   Future<QuestionApiResponse?> get() async {
