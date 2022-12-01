@@ -40,7 +40,7 @@ class _GamePageState extends State<GamePage> {
                           return SwipingCardDeck(
                             cardDeck: state.questions.map((e) {
                               return Card(
-                                  child: Text("...")
+                                  child: Text(e.toString())
                               );
                             }
                             ).toList(), onLeftSwipe: (Card ) {  }, onRightSwipe: (Card ) {  }, onDeckEmpty: () {  }, cardWidth: 200,
