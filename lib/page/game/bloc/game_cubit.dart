@@ -33,4 +33,9 @@ class GameCubit extends Cubit<QuestionState> {
       emit(Error(exeption.toString()));
     }
   }
+
+  void onCardSwiped(Question question)
+  {
+    emit(GoodAnswer());
+  }
 }

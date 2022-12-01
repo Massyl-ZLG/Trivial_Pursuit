@@ -17,12 +17,6 @@ class QuestionRepository {
   final QuestionApi _questionApi = QuestionApi.getInstance();
   final QuestionFirebase _questionsFirestore = QuestionFirebase.getInstance();
 
-
-  String _getDate(){
-    DateTime today = DateTime.now();
-    return '${today.day}/${today.month}/${today.year}';
-  }
-
   Future<List<Question>> getFilteredQuestions() async {
       return await _questionApi.getQuestionsOfTheDay();
   }
@@ -38,6 +32,10 @@ class QuestionRepository {
       );
 
       //Delete le documents dans firestore
+
+      // if(_questionsFirestore.get())
+      // await _questionsFirestore.delete('2022-11-31');
+      //
       //Put objectToReturn a firestore
       await _questionsFirestore.insertQuestions(objectToReturn);
       return questions;
