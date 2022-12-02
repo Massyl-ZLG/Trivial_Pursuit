@@ -41,8 +41,8 @@ class _GamePageState extends State<GamePage> {
     return Colors.red;
   }
 
-  MaterialColor finalAnswerColor(String  answer ,  String trueAnswer){
-    if(answer == trueAnswer ) return Colors.green;
+  MaterialColor finalAnswerColor(String answer, String trueAnswer) {
+    if (answer == trueAnswer) return Colors.green;
     return Colors.red;
   }
 
@@ -68,6 +68,19 @@ class _GamePageState extends State<GamePage> {
                     createQuestion(state.questions[_currentIndex]);
                     _questions = state.questions;
                     return Column(children: [
+                      const Padding(
+                        padding: EdgeInsets.only(
+                            left: 0, bottom: 20, right: 20, top: 10),
+                        //apply padding to some sides only
+                        child: Text(
+                          "Score : ",
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16.0,
+                          ),
+                        ),
+                      ),
                       SwipingCardDeck(
                         cardDeck: state.questions.map((e) {
                           return Card(
@@ -132,11 +145,13 @@ class _GamePageState extends State<GamePage> {
                   if (state is GoodAnswer) {
                     return Column(children: [
                       const Padding(
-                        padding: EdgeInsets.only(left:15, bottom: 20, right: 20, top:10), //apply padding to some sides only
-                        child:        Text(
+                        padding: EdgeInsets.only(
+                            left: 15, bottom: 20, right: 20, top: 10),
+                        //apply padding to some sides only
+                        child: Text(
                           "Félicitation c'est une bonne réponse",
                           textAlign: TextAlign.center,
-                          style : TextStyle(
+                          style: TextStyle(
                             color: Colors.green,
                             fontSize: 25.0,
                             shadows: [
@@ -169,16 +184,14 @@ class _GamePageState extends State<GamePage> {
                         }).toList(),
                         onLeftSwipe: (Card card) {
                           setState(() {
-                            // _currentIndex += 1;
-                            // cubit?.onCardSwiped(_questions[_currentIndex]);
-                            // createQuestion(_questions[_currentIndex]);
+                            _currentIndex += 1;
+                            cubit?.nextQuestion(_questions);
                           });
                         },
                         onRightSwipe: (Card) {
                           setState(() {
-                            // cubit?.onCardSwiped(_questions[_currentIndex]);
-                            //_currentIndex += 1;
-                            // createQuestion(_questions[_currentIndex]);
+                            _currentIndex += 1;
+                            cubit?.nextQuestion(_questions);
                           });
                         },
                         onDeckEmpty: () {},
@@ -186,7 +199,8 @@ class _GamePageState extends State<GamePage> {
                       ),
                       for (var response in _currentResponse)
                         Card(
-                          color: finalAnswerColor(response ,_questions[_currentIndex].correct_answer ),
+                          color: finalAnswerColor(response,
+                              _questions[_currentIndex].correct_answer),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
@@ -205,11 +219,13 @@ class _GamePageState extends State<GamePage> {
                   if (state is WrongAnswer) {
                     return Column(children: [
                       const Padding(
-                        padding: EdgeInsets.only(left:15, bottom: 20, right: 20, top:10), //apply padding to some sides only
-                        child:   Text(
+                        padding: EdgeInsets.only(
+                            left: 15, bottom: 20, right: 20, top: 10),
+                        //apply padding to some sides only
+                        child: Text(
                           "Mauvaise réponse",
                           textAlign: TextAlign.center,
-                          style : TextStyle(
+                          style: TextStyle(
                             color: Colors.red,
                             fontSize: 25.0,
                             shadows: [
@@ -242,16 +258,14 @@ class _GamePageState extends State<GamePage> {
                         }).toList(),
                         onLeftSwipe: (Card card) {
                           setState(() {
-                            // _currentIndex += 1;
-                            // cubit?.onCardSwiped(_questions[_currentIndex]);
-                            // createQuestion(_questions[_currentIndex]);
+                            _currentIndex += 1;
+                            cubit?.nextQuestion(_questions);
                           });
                         },
                         onRightSwipe: (Card) {
                           setState(() {
-                            // cubit?.onCardSwiped(_questions[_currentIndex]);
-                            //_currentIndex += 1;
-                            // createQuestion(_questions[_currentIndex]);
+                            _currentIndex += 1;
+                            cubit?.nextQuestion(_questions);
                           });
                         },
                         onDeckEmpty: () {},
@@ -259,7 +273,8 @@ class _GamePageState extends State<GamePage> {
                       ),
                       for (var response in _currentResponse)
                         Card(
-                          color: finalAnswerColor(response ,_questions[_currentIndex].correct_answer ),
+                          color: finalAnswerColor(response,
+                              _questions[_currentIndex].correct_answer),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
@@ -275,61 +290,28 @@ class _GamePageState extends State<GamePage> {
                         )
                     ]);
                   }
-                  // if (state is GoodAnswer) {
-                  //   return Column(children: [
-                  //     SwipingCardDeck(
-                  //       cardDeck: _questions.map((e) {
-                  //         return Card(
-                  //           color: Colors.blue,
-                  //           shape: RoundedRectangleBorder(
-                  //             borderRadius: BorderRadius.circular(10),
-                  //           ),
-                  //           margin: const EdgeInsets.all(20.0),
-                  //           child: Container(
-                  //               padding: const EdgeInsets.all(10.0),
-                  //               alignment: Alignment.center,
-                  //               child: Text(
-                  //                 HtmlUnescape().convert(e.question),
-                  //                 textAlign: TextAlign.center,
-                  //                 style: const TextStyle(fontSize: 16),
-                  //               )),
-                  //         );
-                  //       }).toList(),
-                  //       onLeftSwipe: (Card card) {
-                  //         setState(() {
-                  //           _currentIndex += 1;
-                  //           // cubit?.onCardSwiped(_questions[_currentIndex]);
-                  //           // createQuestion(_questions[_currentIndex]);
-                  //         });
-                  //       },
-                  //       onRightSwipe: (Card) {
-                  //         setState(() {
-                  //           // cubit?.onCardSwiped(_questions[_currentIndex]);
-                  //           // _currentIndex += 1 ;
-                  //           // createQuestion(_questions[_currentIndex]);
-                  //         });
-                  //       },
-                  //       onDeckEmpty: () {},
-                  //       cardWidth: 200,
-                  //     ),
-                  //     for (var response in _currentResponse)
-                  //       TextButton(
-                  //         style: TextButton.styleFrom(
-                  //           minimumSize: Size(88, 36),
-                  //           padding: EdgeInsets.symmetric(horizontal: 16),
-                  //           shape: const RoundedRectangleBorder(
-                  //               borderRadius:
-                  //                   BorderRadius.all(Radius.circular(2)),
-                  //               side:
-                  //                   BorderSide(width: 10, color: Colors.blue)),
-                  //         ),
-                  //         onPressed: () {
-                  //           _selectedAnswer = response;
-                  //         },
-                  //         child: Text(response),
-                  //       ),
-                  //   ]);
-                  // }
+                  if (state is Error) {
+                    return Padding(
+                      padding: EdgeInsets.only(
+                          left: 15, bottom: 20, right: 20, top: 10),
+                      //apply padding to some sides only
+                      child: Text(
+                        state.message,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: Colors.green,
+                          fontSize: 25.0,
+                          shadows: [
+                            Shadow(
+                              blurRadius: 10.0,
+                              color: Colors.blue,
+                              offset: Offset(5.0, 5.0),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  }
                   return CircularProgressIndicator();
                 },
               ))),

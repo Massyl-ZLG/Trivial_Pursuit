@@ -38,15 +38,25 @@ class GameCubit extends Cubit<QuestionState> {
 
   void onAnswerValidated(Question question ,  String? selectedAnswer)
   {
-    if(question.correct_answer == selectedAnswer){
-      if(question.difficulty == "eazy") _score++;
-      else if(question.difficulty == "medium") _score+= 2;
-      else if(question.difficulty == "hard") _score+= 3;
-      emit(const GoodAnswer());
-    }
-    for ( var answer in question.incorrect_answers){
-        if(answer == selectedAnswer )  emit(const WrongAnswer());
+      try {
+      if(question.correct_answer == selectedAnswer){
+        if(question.difficulty == "eazy") _score++;
+        else if(question.difficulty == "medium") _score+= 2;
+        else if(question.difficulty == "hard") _score+= 3;
+        emit(const GoodAnswer());
+      }
+      for ( var answer in question.incorrect_answers){
+          if(answer == selectedAnswer )  emit(const WrongAnswer());
+      }
+    } on Exception catch (exeption){
+      emit(Error(exeption.toString()));
     }
 
+  }
+
+
+  void nextQuestion(List<Question> questions)
+  {
+    emit(Loaded(questions));
   }
 }
