@@ -1,5 +1,7 @@
 //import 'dart:html';
 
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter/data/dataSources/repositories/question_repository.dart';
 import 'package:test_flutter/page/game/bloc/game_state.dart';
@@ -34,11 +36,12 @@ class GameCubit extends Cubit<QuestionState> {
     }
   }
 
-  void onCardSwiped(Question question ,  String selectedAnswer)
+  void onAnswerValidated(Question question ,  String? selectedAnswer)
   {
-
     if(question.correct_answer == selectedAnswer){
-      _score++;
+      if(question.difficulty == "eazy") _score++;
+      else if(question.difficulty == "medium") _score+= 2;
+      else if(question.difficulty == "hard") _score+= 3;
       emit(const GoodAnswer());
     }
     for ( var answer in question.incorrect_answers){
