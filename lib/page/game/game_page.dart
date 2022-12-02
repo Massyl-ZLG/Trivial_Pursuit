@@ -65,49 +65,64 @@ class _GamePageState extends State<GamePage> {
                     createQuestion(state.questions[_currentIndex]);
                     _questions = state.questions;
                     return Column(children: [
-                       Padding(
-                        padding: const EdgeInsets.only(
-                            left: 0, bottom: 20, right: 20, top: 10),
-                        //apply padding to some sides only
-                        child: Text(
-                          "Score : ${cubit?.getScore().toString()}" ?? "0" ,
-                          textAlign: TextAlign.left,
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 16.0,
-                          ),
-                        ),
-                      ),
+                      Padding(
+                          padding: const EdgeInsets.only(
+                              left: 20, bottom: 20, right: 20, top: 10),
+                          //apply padding to some sides only
+                          child: Row(children: [
+                            Expanded(
+                                child: Text(
+                              "Score : ${cubit?.getScore().toString()}" ?? "0",
+                              textAlign: TextAlign.left,
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 16.0,
+                              ),
+                            )),
+                            Expanded(
+                                child:Text(
+                              "Question :  ${_currentIndex +1} / ${state.questions.length.toString()}" ??
+                                  "0",
+                              textAlign: TextAlign.right,
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 16.0,
+                              ),
+                            ))
+                          ])),
                       SwipingCardDeck(
                         cardDeck: state.questions.map((e) {
                           return Card(
-                            color: questionColor(e.difficulty),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            margin: const EdgeInsets.all(20.0),
-                            child: Container(
-                                padding: const EdgeInsets.all(10.0),
-                                alignment: Alignment.center,
-                                child: Text(
-                                  HtmlUnescape().convert(e.question),
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(fontSize: 16),
-                                )),
-                          );
+                              color: questionColor(e.difficulty),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              margin: const EdgeInsets.all(20.0),
+                              child: SizedBox(
+                                height: 200,
+                                width: double.infinity,
+                                child: Container(
+                                    padding: const EdgeInsets.all(10.0),
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      HtmlUnescape().convert(e.question),
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(fontSize: 16),
+                                    )),
+                              ));
                         }).toList(),
                         onLeftSwipe: (Card card) {
                           setState(() {
-                            _currentIndex += 1;
-                            // cubit?.onCardSwiped(_questions[_currentIndex]);
-                            // createQuestion(_questions[_currentIndex]);
+                            _currentIndex -= 1;
+                            cubit?.onAnswerValidated(_questions[_currentIndex] , _selectedAnswer);
+                            createQuestion(_questions[_currentIndex]);
                           });
                         },
                         onRightSwipe: (Card) {
                           setState(() {
-                            // cubit?.onCardSwiped(_questions[_currentIndex]);
+                             cubit?.onAnswerValidated(_questions[_currentIndex] , _selectedAnswer);
                             _currentIndex += 1;
-                            // createQuestion(_questions[_currentIndex]);
+                            createQuestion(_questions[_currentIndex]);
                           });
                         },
                         onDeckEmpty: () {},
@@ -146,7 +161,7 @@ class _GamePageState extends State<GamePage> {
                             left: 0, bottom: 20, right: 20, top: 10),
                         //apply padding to some sides only
                         child: Text(
-                          "Score : ${cubit?.getScore().toString()}" ?? "0" ,
+                          "Score : ${cubit?.getScore().toString()}" ?? "0",
                           textAlign: TextAlign.left,
                           style: const TextStyle(
                             color: Colors.black,
@@ -182,14 +197,17 @@ class _GamePageState extends State<GamePage> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                             margin: const EdgeInsets.all(20.0),
-                            child: Container(
-                                padding: const EdgeInsets.all(10.0),
-                                alignment: Alignment.center,
-                                child: Text(
-                                  HtmlUnescape().convert(e.question),
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(fontSize: 16),
-                                )),
+                            child: SizedBox(
+                                height: 200,
+                                width: double.infinity,
+                                child: Container(
+                                    padding: const EdgeInsets.all(10.0),
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      HtmlUnescape().convert(e.question),
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(fontSize: 16),
+                                    ))),
                           );
                         }).toList(),
                         onLeftSwipe: (Card card) {
@@ -233,7 +251,7 @@ class _GamePageState extends State<GamePage> {
                             left: 0, bottom: 20, right: 20, top: 10),
                         //apply padding to some sides only
                         child: Text(
-                          "Score : ${cubit?.getScore().toString()}" ?? "0" ,
+                          "Score : ${cubit?.getScore().toString()}" ?? "0",
                           textAlign: TextAlign.left,
                           style: const TextStyle(
                             color: Colors.black,
@@ -269,14 +287,17 @@ class _GamePageState extends State<GamePage> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                             margin: const EdgeInsets.all(20.0),
-                            child: Container(
-                                padding: const EdgeInsets.all(10.0),
-                                alignment: Alignment.center,
-                                child: Text(
-                                  HtmlUnescape().convert(e.question),
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(fontSize: 16),
-                                )),
+                            child: SizedBox(
+                                height: 200,
+                                width: double.infinity,
+                                child: Container(
+                                    padding: const EdgeInsets.all(10.0),
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      HtmlUnescape().convert(e.question),
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(fontSize: 16),
+                                    ))),
                           );
                         }).toList(),
                         onLeftSwipe: (Card card) {
