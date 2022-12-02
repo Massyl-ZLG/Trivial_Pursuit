@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class RankingScreen extends StatefulWidget {
-  const RankingScreen({Key? key}) : super(key: key);
+class LeaderboardPage extends StatefulWidget {
+  const LeaderboardPage({Key? key}) : super(key: key);
 
   @override
-  State<RankingScreen> createState() => _RankingScreenState();
+  State<LeaderboardPage> createState() => _LeaderboardPageState();
 }
 
-class _RankingScreenState extends State<RankingScreen> {
+class _LeaderboardPageState extends State<LeaderboardPage> {
   List ranks = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   @override
   Widget build(BuildContext context) {

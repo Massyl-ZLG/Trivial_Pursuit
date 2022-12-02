@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:test_flutter/model/user.dart' as userModel;
 
 import '../main.dart';
-import '../utils.dart';
+import '../page/utils/utils.dart';
 
 class SignUpWidget extends StatefulWidget {
 

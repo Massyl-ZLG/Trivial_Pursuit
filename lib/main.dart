@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:test_flutter/page/auth_page.dart';
+import 'package:test_flutter/page/auth/auth_page.dart';
 import 'package:test_flutter/page/game/game_page.dart';
-import 'package:test_flutter/page/verifiy_email_page.dart';
-import 'package:test_flutter/utils.dart';
+import 'package:test_flutter/page/auth/signup/verifiy_email_page.dart';
+import 'package:test_flutter/page/utils/utils.dart';
 
-import 'home.dart';
+import 'page/home/home.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,10 +1,7 @@
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:html_unescape/html_unescape.dart';
-import 'package:mason/mason.dart';
 import 'package:swiping_card_deck/swiping_card_deck.dart';
 import 'package:test_flutter/data/dataSources/repositories/question_repository.dart';
 import 'package:test_flutter/page/game/bloc/game_cubit.dart';
@@ -68,14 +65,14 @@ class _GamePageState extends State<GamePage> {
                     createQuestion(state.questions[_currentIndex]);
                     _questions = state.questions;
                     return Column(children: [
-                      const Padding(
-                        padding: EdgeInsets.only(
+                       Padding(
+                        padding: const EdgeInsets.only(
                             left: 0, bottom: 20, right: 20, top: 10),
                         //apply padding to some sides only
                         child: Text(
-                          "Score : ",
+                          "Score : ${cubit?.getScore().toString()}" ?? "0" ,
                           textAlign: TextAlign.left,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.black,
                             fontSize: 16.0,
                           ),
@@ -144,6 +141,19 @@ class _GamePageState extends State<GamePage> {
                   }
                   if (state is GoodAnswer) {
                     return Column(children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 0, bottom: 20, right: 20, top: 10),
+                        //apply padding to some sides only
+                        child: Text(
+                          "Score : ${cubit?.getScore().toString()}" ?? "0" ,
+                          textAlign: TextAlign.left,
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 16.0,
+                          ),
+                        ),
+                      ),
                       const Padding(
                         padding: EdgeInsets.only(
                             left: 15, bottom: 20, right: 20, top: 10),
@@ -218,6 +228,19 @@ class _GamePageState extends State<GamePage> {
                   }
                   if (state is WrongAnswer) {
                     return Column(children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 0, bottom: 20, right: 20, top: 10),
+                        //apply padding to some sides only
+                        child: Text(
+                          "Score : ${cubit?.getScore().toString()}" ?? "0" ,
+                          textAlign: TextAlign.left,
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 16.0,
+                          ),
+                        ),
+                      ),
                       const Padding(
                         padding: EdgeInsets.only(
                             left: 15, bottom: 20, right: 20, top: 10),

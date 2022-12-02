@@ -59,4 +59,10 @@ class GameCubit extends Cubit<QuestionState> {
   {
     emit(Loaded(questions));
   }
+
+
+  int getScore()
+  {
+    return _score;
+  }
 }
