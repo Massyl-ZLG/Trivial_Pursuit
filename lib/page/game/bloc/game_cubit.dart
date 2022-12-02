@@ -13,7 +13,7 @@ class GameCubit extends Cubit<QuestionState> {
 
   late Question  _lastQuestion;
 
-  int _score = 0 ;
+  int score = 0 ;
 
   String selectedAnswer = '';
 
@@ -21,7 +21,6 @@ class GameCubit extends Cubit<QuestionState> {
 
   setAnswer(String answer){
     selectedAnswer = answer;
-    emit(AnswerSelected(answer));
   }
 
   Future<void> fetchQuestion() async {
@@ -36,13 +35,13 @@ class GameCubit extends Cubit<QuestionState> {
     }
   }
 
-  void onAnswerValidated(Question question ,  String? selectedAnswer)
+  void onAnswerValidated(Question question )
   {
       try {
       if(question.correct_answer == selectedAnswer){
-        if(question.difficulty == "eazy") _score++;
-        else if(question.difficulty == "medium") _score+= 2;
-        else if(question.difficulty == "hard") _score+= 3;
+        if(question.difficulty == "eazy") score++;
+        else if(question.difficulty == "medium") score+= 2;
+        else if(question.difficulty == "hard") score+= 3;
         emit(const GoodAnswer());
       }
       for ( var answer in question.incorrect_answers){
@@ -61,8 +60,5 @@ class GameCubit extends Cubit<QuestionState> {
   }
 
 
-  int getScore()
-  {
-    return _score;
-  }
+
 }
