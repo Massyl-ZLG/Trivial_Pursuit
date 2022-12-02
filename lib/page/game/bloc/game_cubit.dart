@@ -34,8 +34,16 @@ class GameCubit extends Cubit<QuestionState> {
     }
   }
 
-  void onCardSwiped(Question question)
+  void onCardSwiped(Question question ,  String selectedAnswer)
   {
-    emit(GoodAnswer());
+
+    if(question.correct_answer == selectedAnswer){
+      _score++;
+      emit(const GoodAnswer());
+    }
+    for ( var answer in question.incorrect_answers){
+        if(answer == selectedAnswer )  emit(const WrongAnswer());
+    }
+
   }
 }
