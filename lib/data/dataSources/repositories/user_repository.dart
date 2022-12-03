@@ -17,4 +17,8 @@ class UserRepository {
   Future<List<TrivialUser>?> getUserOrderByScore() async {
     return await _usersFirestore.orderBy("score" , true);
   }
+
+  Future<TrivialUser?> getUser(String? uid ) async {
+    return await _usersFirestore.get(uid);
+  }
 }

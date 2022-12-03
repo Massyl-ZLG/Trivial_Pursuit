@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../main.dart';
@@ -101,7 +100,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size.fromHeight(50),
               ),
-              icon : const Icon(Icons.arrow_forward , size: 32),
+              icon : const Icon(Icons.login , size: 32),
               label: const Text(
                 ' Sign up',
                 style : TextStyle(fontSize: 24),
@@ -157,13 +156,6 @@ class _SignUpWidgetState extends State<SignUpWidget> {
 
   Future createUser({required String? uid , required String email , required String nickname}) async {
     final docUser =   FirebaseFirestore.instance.collection('users').doc(uid);
-    // final json = {
-    //   'last_name' : lastname,
-    //   'first_name' : firstname,
-    //   'age' :  age,
-    //   'nickname' : nickname,
-    //   'email' : email,
-    // };
 
     final TrivialUser user  = TrivialUser (
       nickname: nickname,

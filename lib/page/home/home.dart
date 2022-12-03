@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:test_flutter/page/game/game_page.dart';
 import 'package:test_flutter/page/leaderboard/leaderboard_page.dart';
 
-import '../profil/profil_screen.dart';
+import '../profil/profil_page.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -17,7 +17,7 @@ class _HomeState extends State<Home> {
   final user = FirebaseAuth.instance.currentUser;
 
    int _selectedIndex=0;
-   final List<StatefulWidget> _pages = [LeaderboardPage(),GamePage(),ProfilScreen()];
+   final List<StatefulWidget> _pages = [LeaderboardPage(),GamePage(),ProfilPage()];
    void _onItemTapped(int index) {
      setState(() {
        _selectedIndex = index;

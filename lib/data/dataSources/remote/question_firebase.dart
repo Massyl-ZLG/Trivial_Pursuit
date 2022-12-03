@@ -35,8 +35,8 @@ class QuestionFirebase {
   }
 
   Future<QuestionApiResponse?> get() async {
-    DocumentSnapshot<QuestionApiResponse> test = await _questionRef.doc(_getDate()).get();
-    return test.data();
+    DocumentSnapshot<QuestionApiResponse> question = await _questionRef.doc(_getDate()).get();
+    return question.data();
   }
 
   Future<void> delete(String id) async {

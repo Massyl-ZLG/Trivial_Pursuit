@@ -15,7 +15,6 @@ class LeaderboardPage extends StatefulWidget {
 class _LeaderboardPageState extends State<LeaderboardPage> {
   LeaderboardCubit? cubit;
 
-  List<TrivialUser> _users = [];
 
   MaterialColor rankingColor(int index){
     if(index == 0) return Colors.red;

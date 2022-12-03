@@ -30,4 +30,10 @@ class UserFirebase {
   }
 
 
+  Future<TrivialUser?> get(String? uid) async {
+    DocumentSnapshot<TrivialUser> user = await _userRef.doc(uid).get();
+    return user.data();
+  }
+
+
 }
