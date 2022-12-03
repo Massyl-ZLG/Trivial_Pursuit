@@ -23,9 +23,8 @@ class UserFirebase {
     return _instance!;
   }
 
-  Future<List<TrivialUser>?> orderBy(String attribute) async {
-   // DocumentSnapshot<List<TrivialUser>> usersOrdered = (await _userRef.limit(10)) as DocumentSnapshot<List<TrivialUser>>;
-    QuerySnapshot<TrivialUser> usersOrdered = await _userRef.get();
+  Future<List<TrivialUser>?> orderBy(String attribute , bool descending) async {
+    QuerySnapshot<TrivialUser> usersOrdered = await _userRef.orderBy(attribute  , descending : descending).get();
     List<TrivialUser> allData =  usersOrdered.docs.map((doc) => doc.data()).toList();
     return allData;
   }
