@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:test_flutter/data/dataSources/repositories/question_repository.dart';
+import 'package:test_flutter/widget/signup_widget.dart';
 
 import '../main.dart';
 import '../page/auth/login/forgot_password_page.dart';
@@ -17,6 +20,8 @@ class LoginWidget extends StatefulWidget {
   }) : super(key : key);
   @override
   State<LoginWidget> createState() => _LoginWidgetState();
+
+
 }
 
 class _LoginWidgetState extends State<LoginWidget> {
@@ -31,6 +36,8 @@ class _LoginWidgetState extends State<LoginWidget> {
     passwordController.dispose();
     super.dispose();
   }
+
+
 
   @override
   Widget build(BuildContext context) => SingleChildScrollView(
@@ -81,22 +88,15 @@ class _LoginWidgetState extends State<LoginWidget> {
           ),
         const SizedBox(height: 16),
         const SizedBox(height: 20),
-        RichText(
-            text: TextSpan(
-              recognizer: TapGestureRecognizer()
-                ..onTap =  widget.onClickedSignUp,
-              style: const TextStyle(color: Colors.black),
-              text : 'No account ?',
-              children: [
-                TextSpan(
-                  text: 'Sign up',
-                  style : TextStyle(
-                    decoration: TextDecoration.underline,
-                    color : Theme.of(context).colorScheme.secondary,
-                  )
-                )
-              ]
-            )
+        InkWell(
+          onTap:   widget.onClickedSignUp,
+          child : const  Text(
+              'Sign Up',
+              style : TextStyle(
+                  decoration: TextDecoration.underline,
+                  color : Colors.lightBlue
+              )
+          )
         ),
       ],
     )

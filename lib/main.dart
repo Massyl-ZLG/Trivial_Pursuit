@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: title,
       navigatorKey: navigatorKey,
-      home:  GamePage(),
+      home:  MyHomePage(),
     );
 
 }
@@ -48,7 +48,6 @@ class MyHomePage extends StatelessWidget {
             }else{
               return  AuthPage();
             }
-
           },
         )
     );

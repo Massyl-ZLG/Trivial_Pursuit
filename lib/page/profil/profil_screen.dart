@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:test_flutter/model/user.dart' as userModel;
+import '../../model/trivial_user.dart';
 
 class ProfilScreen extends StatefulWidget {
   const ProfilScreen({Key? key}) : super(key: key);
@@ -67,11 +67,11 @@ class _ProfilScreenState extends State<ProfilScreen> {
     );
 
 
-  Stream<List<userModel.User>> readUsers() => FirebaseFirestore.instance
+  Stream<List<TrivialUser>> readUsers() => FirebaseFirestore.instance
       .collection('users')
       .snapshots()
       .map((snapshot) =>
-      snapshot.docs.map((doc) => userModel.User.fromJson(doc.data())).toList());
+      snapshot.docs.map((doc) => TrivialUser.fromJson(doc.data())).toList());
 
 }
 
