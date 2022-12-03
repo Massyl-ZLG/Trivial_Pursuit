@@ -85,7 +85,7 @@ class _GamePageState extends State<GamePage> {
                       onDeckEmpty: () {},
                       cardWidth: 200,
                     );
-                    return Column(children: [
+                    return ListView(children: [
                       _scoreAndProgress(),
                       // _deck ??= SwipingCardDeck( to replace
                       SwipingCardDeck(
@@ -151,7 +151,7 @@ class _GamePageState extends State<GamePage> {
                   }
 
                   if (state is GoodAnswer) {
-                    return Column(children: [
+                    return ListView(children: [
                       _scoreAndProgress(),
                       _answerMessage(state),
                       SwipingCardDeck(
@@ -209,7 +209,7 @@ class _GamePageState extends State<GamePage> {
                     ]);
                   }
                   if (state is WrongAnswer) {
-                    return Column(children: [
+                    return ListView(children: [
                       _scoreAndProgress(),
                       _answerMessage(state),
                       SwipingCardDeck(
@@ -413,8 +413,7 @@ class _GamePageState extends State<GamePage> {
       ),
       Container(
           margin: const EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+          child: ListView(
               children: _currentResponse
                   .map((answer) => InkWell(
                       onTap: () {
