@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter/data/dataSources/repositories/user_repository.dart';
 import 'package:test_flutter/page/profil/bloc/profil_state.dart';
+import '../utils/utils.dart';
 import 'bloc/profil_cubit.dart';
 
 class ProfilPage extends StatefulWidget {
@@ -15,6 +16,14 @@ class ProfilPage extends StatefulWidget {
 class _ProfilPageState extends State<ProfilPage> {
   ProfilCubit? cubit;
   final currentUser = FirebaseAuth.instance.currentUser;
+
+  final nicknameController = TextEditingController();
+
+  @override
+  void dispose(){
+    nicknameController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -76,7 +85,7 @@ class _ProfilPageState extends State<ProfilPage> {
                   );
                 }
                 if (state is Edit) {
-                  return Text("Loool");
+                  return _edit();
                 }
                 if (state is Error) {}
                 return const CircularProgressIndicator();
@@ -90,4 +99,61 @@ class _ProfilPageState extends State<ProfilPage> {
         },
         child: const Icon(Icons.logout),
       ));
+
+
+
+  Widget _edit(){
+    return Column(  mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const SizedBox(height: 40),
+          TextFormField(
+            controller: nicknameController,
+            cursorColor: Colors.white,
+            textInputAction: TextInputAction.next,
+            decoration: const InputDecoration( label  : Text('Nickname ') ),
+            obscureText: false,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            validator: (nickname) =>
+            nickname == null
+                ? 'Enter a valid nickname'
+                : null,
+          ),
+          const SizedBox(height: 40),
+          ElevatedButton.icon(
+            style: ElevatedButton.styleFrom(
+              minimumSize: const Size.fromHeight(50),
+            ),
+            icon : const Icon(Icons.lock_open , size: 32),
+            label: const Text(
+              'Sign In',
+              style : TextStyle(fontSize: 24),
+            ),
+            onPressed: update,
+          ),
+          TextButton(
+              onPressed: () => cubit?.show(),
+              child: Text('Retour au profil')),
+        ]
+    );
+  }
+
+
+  Future update() async {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => const Center(child: CircularProgressIndicator()),
+    );
+
+
+    try {
+      // await FirebaseAuth.instance.signInWithEmailAndPassword(
+      //   email : emailController.text.trim(),
+      //   password : passwordController.text.trim(),
+      // );
+    } on FirebaseAuthException catch (e) {
+      print(e);
+      Utils.showSnackBar(e.message);
+    }
+  }
 }

@@ -24,6 +24,10 @@ class ProfilCubit extends Cubit<ProfilState> {
     }
   }
 
+  void show(){
+    emit(Initial());
+  }
+
   void edit(){
     emit(Edit());
   }
