@@ -31,16 +31,7 @@ class _GamePageState extends State<GamePage> {
       ..toList();
   }
 
-  MaterialColor questionColor(String difficulty) {
-    if (difficulty == "easy") return Colors.blue;
-    if (difficulty == "medium") return Colors.orange;
-    return Colors.red;
-  }
 
-  MaterialColor finalAnswerColor(String answer, String trueAnswer) {
-    if (answer == trueAnswer) return Colors.green;
-    return Colors.red;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,10 +54,8 @@ class _GamePageState extends State<GamePage> {
                     _deck ??= SwipingCardDeck(
                       cardDeck: state.questions.map((e) {
                         return Card(
-                            color: questionColor(e.difficulty),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
+                            color: _questionColor(e.difficulty),
+                            shape: _cardBorder(),
                             margin: const EdgeInsets.all(20.0),
                             child: SizedBox(
                               height: 200,
@@ -102,10 +91,8 @@ class _GamePageState extends State<GamePage> {
                       SwipingCardDeck(
                         cardDeck: state.questions.map((e) {
                           return Card(
-                              color: questionColor(e.difficulty),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
+                              color: _questionColor(e.difficulty),
+                              shape:  _cardBorder(),
                               margin: const EdgeInsets.all(20.0),
                               child: SizedBox(
                                 height: 200,
@@ -148,9 +135,7 @@ class _GamePageState extends State<GamePage> {
                                 color: cubit?.selectedAnswer == response
                                     ? Colors.green
                                     : Colors.cyan,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
+                                shape: _cardBorder(),
                                 margin: const EdgeInsets.all(20.0),
                                 child: Container(
                                     padding: const EdgeInsets.all(10.0),
@@ -172,7 +157,7 @@ class _GamePageState extends State<GamePage> {
                       SwipingCardDeck(
                         cardDeck: _questions.map((e) {
                           return Card(
-                            color: questionColor(e.difficulty),
+                            color: _questionColor(e.difficulty),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
@@ -206,7 +191,7 @@ class _GamePageState extends State<GamePage> {
                         cardWidth: 200,
                       ),
                       ..._currentResponse.map((response) => Card(
-                            color: finalAnswerColor(response,
+                            color: _finalAnswerColor(response,
                                 _questions[_currentIndex].correct_answer),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
@@ -230,7 +215,7 @@ class _GamePageState extends State<GamePage> {
                       SwipingCardDeck(
                         cardDeck: _questions.map((e) {
                           return Card(
-                            color: questionColor(e.difficulty),
+                            color: _questionColor(e.difficulty),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
@@ -264,7 +249,7 @@ class _GamePageState extends State<GamePage> {
                         cardWidth: 200,
                       ),
                       ..._currentResponse.map((response) => Card(
-                            color: finalAnswerColor(response,
+                            color: _finalAnswerColor(response,
                                 _questions[_currentIndex].correct_answer),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
@@ -316,6 +301,41 @@ class _GamePageState extends State<GamePage> {
     );
   }
 
+
+
+  MaterialColor _questionColor(String difficulty) {
+    if (difficulty == "easy") return Colors.blue;
+    if (difficulty == "medium") return Colors.orange;
+    return Colors.red;
+  }
+
+  MaterialColor _finalAnswerColor(String answer, String trueAnswer) {
+    if (answer == trueAnswer) return Colors.green;
+    return Colors.red;
+  }
+
+  RoundedRectangleBorder  _cardBorder(){
+    return  RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(10),
+      side: const  BorderSide(
+        color: Colors.black12,
+      ),
+    );
+  }
+
+  BoxDecoration _scoreAndProgressBoxDecoration() {
+    return BoxDecoration(
+        color: Colors.cyan,
+        border: Border.all(width: 3.0, color: Colors.black12),
+        borderRadius: const BorderRadius.all(
+            Radius.circular(5.0) //                 <--- border radius here
+            ),
+        boxShadow: const [
+            BoxShadow(blurRadius: 10, color: Colors.black, offset: Offset(1, 3))
+        ] // Make rounded corner of border
+        );
+  }
+
   Widget _scoreAndProgress() {
     return Padding(
         padding:
@@ -323,23 +343,31 @@ class _GamePageState extends State<GamePage> {
         //apply padding to some sides only
         child: Row(children: [
           Expanded(
-              child: Text(
-            "Score : ${cubit?.score.toString()}" ?? "0",
-            textAlign: TextAlign.left,
-            style: const TextStyle(
-              color: Colors.black,
-              fontSize: 16.0,
-            ),
-          )),
+              child: Container(
+                  margin: const EdgeInsets.fromLTRB(0, 10, 10, 0),
+                  padding: const EdgeInsets.all(4.0),
+                  decoration: _scoreAndProgressBoxDecoration(),
+                  child: Text(
+                    "Score : ${cubit?.score.toString()}" ?? "0",
+                    textAlign: TextAlign.left,
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 16.0,
+                    ),
+                  ))),
           Expanded(
-              child: Text(
-            "Question :  ${_currentIndex + 1} / 10" ?? "0",
-            textAlign: TextAlign.right,
-            style: const TextStyle(
-              color: Colors.black,
-              fontSize: 16.0,
-            ),
-          ))
+              child: Container(
+                  margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                  padding: const EdgeInsets.all(4.0),
+                  decoration: _scoreAndProgressBoxDecoration(),
+                  child: Text(
+                    "Question :  ${_currentIndex + 1} / 10" ?? "0",
+                    textAlign: TextAlign.left,
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 16.0,
+                    ),
+                  )))
         ]));
   }
 
