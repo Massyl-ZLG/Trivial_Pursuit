@@ -12,6 +12,8 @@
           <set>
             <option value="$USER_HOME$/Téléchargements/LaCatho/M2/Mobile/Trivial_Pursuit/android" />
             <option value="$USER_HOME$/Téléchargements/LaCatho/M2/Mobile/Trivial_Pursuit/android/app" />
+            <option value="$USER_HOME$/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-3.4.9/android" />
+            <option value="$USER_HOME$/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-3.10.0/android" />
             <option value="$USER_HOME$/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-1.23.0/android" />
             <option value="$USER_HOME$/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_database-9.1.5/android" />
           </set>

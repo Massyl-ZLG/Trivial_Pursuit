@@ -27,7 +27,13 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
      return Scaffold(
       appBar: AppBar(
-        title: Text('Trivial Pursuit'),
+        title: Text(
+            'Trivial Pursuit',
+          style: TextStyle(
+            color: Colors.white
+          )
+        ),
+        backgroundColor: Color(0xFFe34d40),
       ),
       body: IndexedStack(
           index : _selectedIndex,
@@ -35,21 +41,32 @@ class _HomeState extends State<Home> {
         ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
+
           BottomNavigationBarItem(
-            icon: Icon(Icons.grade),
+              icon: Icon(
+                Icons.grade,
+                color: Colors.white,
+              ),
             label: 'Ranking',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.sports_esports),
+            icon: Icon(
+              Icons.sports_esports,
+              color: Colors.white,
+            ),
             label: 'Game',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: Icon(
+              Icons.person,
+              color: Colors.white,
+            ),
             label: 'Profil',
           ),
         ],
+        backgroundColor: Color(0xFFe34d40),
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Colors.white,
         onTap: _onItemTapped,
       ),
     );

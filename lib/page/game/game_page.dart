@@ -133,8 +133,8 @@ class _GamePageState extends State<GamePage> {
                               },
                               child: Card(
                                 color: cubit?.selectedAnswer == response
-                                    ? Colors.green
-                                    : Colors.cyan,
+                                    ? Color(0xFFfc9463)
+                                    : Color(0xFFfbdcc4),
                                 shape: _cardBorder(),
                                 margin: const EdgeInsets.all(20.0),
                                 child: Container(
@@ -296,6 +296,9 @@ class _GamePageState extends State<GamePage> {
           cubit?.onAnswerValidated(_questions[_currentIndex]);
           //_currentResponse = [];
         },
+        focusColor: Colors.red,
+        hoverColor: Colors.black,
+        backgroundColor: Colors.black12,
         child: const Icon(Icons.check),
       ),
     );
@@ -304,7 +307,7 @@ class _GamePageState extends State<GamePage> {
 
 
   MaterialColor _questionColor(String difficulty) {
-    if (difficulty == "easy") return Colors.blue;
+    if (difficulty == "easy") return Colors.green;
     if (difficulty == "medium") return Colors.orange;
     return Colors.red;
   }
@@ -325,7 +328,7 @@ class _GamePageState extends State<GamePage> {
 
   BoxDecoration _scoreAndProgressBoxDecoration() {
     return BoxDecoration(
-        color: Colors.cyan,
+        color: Color(0xFFfc9463),
         border: Border.all(width: 3.0, color: Colors.black12),
         borderRadius: const BorderRadius.all(
             Radius.circular(5.0) //                 <--- border radius here
@@ -352,7 +355,7 @@ class _GamePageState extends State<GamePage> {
                     textAlign: TextAlign.left,
                     style: const TextStyle(
                       color: Colors.black,
-                      fontSize: 16.0,
+                      fontSize: 18.0,
                     ),
                   ))),
           Expanded(
@@ -365,7 +368,7 @@ class _GamePageState extends State<GamePage> {
                     textAlign: TextAlign.left,
                     style: const TextStyle(
                       color: Colors.black,
-                      fontSize: 16.0,
+                      fontSize: 18.0,
                     ),
                   )))
         ]));

@@ -50,7 +50,7 @@ class _ProfilPageState extends State<ProfilPage> {
                               height: MediaQuery.of(context).size.height / 3,
                               fit: BoxFit.cover,
                               image: const NetworkImage(
-                                  'https://img1.psthc.fr/62/00_4be196a54cf0a.PNG')),
+                                  'https://r4.wallpaperflare.com/wallpaper/758/252/42/firewatch-video-games-mountains-nature-wallpaper-d8c6cc1acf2cf7c96e70797232d9cb10.jpg')),
                           const Positioned(
                               bottom: -70.0,
                               child: CircleAvatar(
@@ -71,9 +71,18 @@ class _ProfilPageState extends State<ProfilPage> {
                             child: Text("Score : " +
                                 (state.user?.score.toString() ?? "Inconnu"))),
                       ),
-                      TextButton(
+                      ElevatedButton.icon(
                           onPressed: () => cubit?.edit(),
-                          child: Text('Editer')),
+                          icon: const Icon(Icons.edit, size: 24),
+                          label: const Text(
+                          'Editer',
+                          style : TextStyle(fontSize: 18),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.black,
+                            shape: StadiumBorder()
+                          ),
+                      ),
                       Center(
                         child: ListTile(
                           title: Text('A propos'),
@@ -97,7 +106,11 @@ class _ProfilPageState extends State<ProfilPage> {
           FirebaseAuth.instance.signOut();
           //_currentResponse = [];
         },
-        child: const Icon(Icons.logout),
+        child: const Icon(
+            Icons.login_outlined,
+            color: Colors.white,
+        ),
+        backgroundColor: Colors.black,
       ));
 
 

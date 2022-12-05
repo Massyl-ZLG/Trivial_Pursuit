@@ -16,11 +16,11 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
   LeaderboardCubit? cubit;
 
 
-  MaterialColor rankingColor(int index){
-    if(index == 0) return Colors.red;
-    if(index == 1) return Colors.orange;
+  ColorSwatch<int> rankingColor(int index){
+    if(index == 0) return Colors.green;
+    if(index == 1) return Colors.lightGreenAccent;
     if(index == 2) return Colors.yellow;
-    return  Colors.cyan;
+    return  Colors.red;
   }
 
   double rankingSize(int index){
@@ -73,45 +73,51 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
           builder: (context, state) {
             if (state is Loaded) {
               return ListView(
-                children: state.users.asMap().entries.map((user) {
-                  return Card(
-                    color: rankingColor(user.key),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    margin: const EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
-                    child: SizedBox(
-                        height: rankingSize(user.key),
-                        width: double.infinity,
-                        child: Container(
-                          padding: const EdgeInsets.all(10.0),
-                          alignment: Alignment.center,
-                          child: Row(children:  [
-                            Text(
-                                    user.key.toString(),
+                children: [
+                  const SizedBox(
+                    height: 32,
+                  ),
+                  ... state.users.asMap().entries.map((user) {
+                    return Card(
+                      color: rankingColor(user.key),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      margin: const EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
+                      child: SizedBox(
+                          height: rankingSize(user.key),
+                          width: double.infinity,
+                          child: Container(
+                            padding: const EdgeInsets.all(10.0),
+                            alignment: Alignment.center,
+                            child: Row(children:  [
+                              Text(
+                                  (user.key +1).toString(),
+                                  textAlign: TextAlign.start,
+                                  style: rankingTextStyle(user.key)
+                              ),
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(20, 0, 0, 0), //apply padding to LTRB, L:Left, T:Top, R:Right, B:Bottom
+                                child:
+                                Text(
+                                    user.value?.nickname ?? "Inconnu",
                                     textAlign: TextAlign.start,
                                     style: rankingTextStyle(user.key)
-                            ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(20, 0, 0, 0), //apply padding to LTRB, L:Left, T:Top, R:Right, B:Bottom
-                              child:
+                                ),
+                              ),
+                              Expanded(
+                                  child:
                                   Text(
-                                      user.value?.nickname ?? "Inconnu",
-                                      textAlign: TextAlign.start,
+                                      user.value?.score.toString() ?? "Inconnu",
+                                      textAlign: TextAlign.end,
                                       style: rankingTextStyle(user.key)
-                                  ),
-                            ),
-                            Expanded(
-                                child:
-                                    Text(
-                                        user.value?.score.toString() ?? "Inconnu",
-                                        textAlign: TextAlign.end,
-                                        style: rankingTextStyle(user.key)
-                                    )),
-                          ]),
-                        )),
-                  );
-                }).toList(),
+                                  )),
+                            ]),
+                          )),
+                    );
+                  }).toList(),
+                ]
+
               );
             }
             if (state is Error) {}
