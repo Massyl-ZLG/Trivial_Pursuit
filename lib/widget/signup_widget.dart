@@ -3,6 +3,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../main.dart';
 import '../model/trivial_user.dart';
@@ -134,6 +135,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
       builder: (context) => Center(child: CircularProgressIndicator()),
     );
 
+    context.goNamed('game');
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword (
         email : emailController.text.trim(),
@@ -143,15 +145,18 @@ class _SignUpWidgetState extends State<SignUpWidget> {
             uid: cred.user?.uid,
             email: emailController.text.trim(),
             nickname: nicknameController.text.trim()
-          )
+          ),
+
+
       });
+
 
     } on FirebaseAuthException catch (e) {
       print(e);
       Utils.showSnackBar(e.message);
     }
 
-    context.goNamed('game');
+
   }
 
   Future createUser({required String? uid , required String email , required String nickname}) async {
@@ -166,6 +171,6 @@ class _SignUpWidgetState extends State<SignUpWidget> {
     final json = user.toJson();
 
 
-    await docUser.set(json);
+    await docUser.set(json).then((value) => context.goNamed('game'));
   }
 }
