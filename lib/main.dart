@@ -3,7 +3,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_flutter/page/auth/auth_page.dart';
+import 'package:test_flutter/page/game/game_page.dart';
 import 'package:test_flutter/page/leaderboard/leaderboard_page.dart';
+import 'package:test_flutter/page/profil/profil_page.dart';
 import 'package:test_flutter/page/utils/utils.dart';
 
 import 'page/home/home.dart';
@@ -14,8 +16,6 @@ Future<void> main() async {
   runApp(MyApp());
 }
 
-
-final navigatorKey = GlobalKey<NavigatorState>();
 
 class MyApp extends StatelessWidget {
   static const String title = 'Setup Firebase';
@@ -34,7 +34,21 @@ class MyApp extends StatelessWidget {
         builder : (context , state) {
           return LeaderboardPage();
         }
-    )
+    ),
+    GoRoute(
+        path: '/game',
+        name : 'game',
+        builder : (context , state) {
+          return GamePage();
+        }
+    ),
+    GoRoute(
+        path: '/profil',
+        name : 'profil',
+        builder : (context , state) {
+          return ProfilPage();
+        }
+    ),
   ]);
 
   @override

@@ -105,7 +105,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 ' Sign up',
                 style : TextStyle(fontSize: 24),
               ),
-              onPressed: signUp,
+              onPressed: () => signUp(context),
             ),
             const SizedBox(height: 20),
             InkWell(
@@ -123,7 +123,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
       )
 
   );
-  Future signUp() async {
+  Future signUp(context) async {
 
     final isValid = formKey.currentState!.validate();
     if(!isValid) return;
@@ -151,7 +151,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
       Utils.showSnackBar(e.message);
     }
 
-    navigatorKey.currentState!.popUntil((route) => route.isFirst);
+    context.goNamed('game');
   }
 
   Future createUser({required String? uid , required String email , required String nickname}) async {

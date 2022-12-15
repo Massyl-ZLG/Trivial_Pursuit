@@ -71,7 +71,7 @@ class _LoginWidgetState extends State<LoginWidget> {
             'Sign In',
             style : TextStyle(fontSize: 24),
           ),
-          onPressed: signIn,
+          onPressed: () => signIn(context),
         ),
         const SizedBox(height: 20),
         GestureDetector(
@@ -102,7 +102,7 @@ class _LoginWidgetState extends State<LoginWidget> {
     )
   );
 
-  Future signIn() async {
+  Future signIn(context) async {
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -118,7 +118,6 @@ class _LoginWidgetState extends State<LoginWidget> {
       print(e);
       Utils.showSnackBar(e.message);
     }
-
-    navigatorKey.currentState!.popUntil((route) => route.isFirst);
+    context.goNamed('game');
   }
 }
