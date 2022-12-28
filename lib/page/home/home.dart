@@ -1,13 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:test_flutter/page/game/game_page.dart';
 import 'package:test_flutter/page/leaderboard/leaderboard_page.dart';
 
 import '../profil/profil_page.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
-
+  const Home({Key? key , required this.child}) : super(key: key);
+  final Widget child;
   @override
   State<Home> createState() => _HomeState();
 }
@@ -16,37 +17,20 @@ class _HomeState extends State<Home> {
 
   final user = FirebaseAuth.instance.currentUser;
 
-   int _selectedIndex=0;
-   final List<StatefulWidget> _pages = [LeaderboardPage(),GamePage(),ProfilPage()];
-   void _onItemTapped(int index) {
-     setState(() {
-       _selectedIndex = index;
-     });
-   }
-   @override
+  @override
   Widget build(BuildContext context) {
-     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-            'Trivial Pursuit',
-          style: TextStyle(
-            color: Colors.white
-          )
-        ),
-        backgroundColor: Color(0xFFe34d40),
-      ),
-      body: IndexedStack(
-          index : _selectedIndex,
-          children: _pages,
-        ),
+    return Scaffold(
+      appBar: AppBar(title: const Text('Billion Dollar App')),
+      body: widget.child,
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-
+        currentIndex: _calculateSelectedIndex(context),
+        onTap: onTap,
+        items: const [
           BottomNavigationBarItem(
-              icon: Icon(
-                Icons.grade,
-                color: Colors.white,
-              ),
+            icon: Icon(
+              Icons.grade,
+              color: Colors.white,
+            ),
             label: 'Ranking',
           ),
           BottomNavigationBarItem(
@@ -65,10 +49,34 @@ class _HomeState extends State<Home> {
           ),
         ],
         backgroundColor: Color(0xFFe34d40),
-        currentIndex: _selectedIndex,
         selectedItemColor: Colors.white,
-        onTap: _onItemTapped,
       ),
     );
+  }
+  int _calculateSelectedIndex(BuildContext context) {
+    final GoRouter route = GoRouter.of(context);
+    final String location = route.location;
+    if (location.startsWith('/leaderboard')) {
+      return 0;
+    }
+    if (location.startsWith('/game')) {
+      return 1;
+    }
+    if (location.startsWith('/profil')) {
+      return 2;
+    }
+    return 0;
+  }
+  void onTap(int value) {
+    switch (value) {
+      case 0:
+        return context.go('/leaderboard');
+      case 1:
+        return context.go('/game');
+      case 2:
+        return context.go('/profil');
+      default:
+        return context.go('/');
+    }
   }
 }

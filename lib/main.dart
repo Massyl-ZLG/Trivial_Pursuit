@@ -20,8 +20,19 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   static const String title = 'Setup Firebase';
 
+  static var _rootNavigatorKey;
+  static var _shellNavigatorKey;
 
-  final _router = GoRouter(routes: [
+  final _router = GoRouter(
+      navigatorKey: _rootNavigatorKey,
+      initialLocation: '/',
+      routes: [
+      ShellRoute(
+      navigatorKey: _shellNavigatorKey,
+      builder: (context, state, child) {
+        return Home(child: child);
+      },
+      routes: [
     GoRoute(
         path : '/',
         builder: (context , state){
@@ -47,9 +58,15 @@ class MyApp extends StatelessWidget {
         name : 'profil',
         builder : (context , state) {
           return ProfilPage();
-        }
+        },
     ),
-  ]);
+      ],
+      ),
+      ],
+  );
+
+
+
 
   @override
   Widget build(BuildContext context) => MaterialApp.router(
@@ -63,15 +80,9 @@ class MyApp extends StatelessWidget {
     backButtonDispatcher: _router.backButtonDispatcher,
   );
 
-  /**Widget build(BuildContext context) =>  MaterialApp(
-    scaffoldMessengerKey: Utils.messengerKey,
-      debugShowCheckedModeBanner: false,
-      title: title,
-      navigatorKey: navigatorKey,
-      home:  MyHomePage(),
-    );**/
 
 }
+/*
 
 class MyHomePage extends StatelessWidget {
 
@@ -93,5 +104,6 @@ class MyHomePage extends StatelessWidget {
     );
 
 }
+*/
 
 
