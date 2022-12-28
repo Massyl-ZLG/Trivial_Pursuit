@@ -23,6 +23,7 @@ mixin _$QuestionState {
     required TResult Function(String answer) answerSelected,
     required TResult Function() goodAnswer,
     required TResult Function() wrongAnswer,
+    required TResult Function() finished,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -33,6 +34,7 @@ mixin _$QuestionState {
     TResult Function(String answer)? answerSelected,
     TResult Function()? goodAnswer,
     TResult Function()? wrongAnswer,
+    TResult Function()? finished,
     TResult Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +45,7 @@ mixin _$QuestionState {
     TResult Function(String answer)? answerSelected,
     TResult Function()? goodAnswer,
     TResult Function()? wrongAnswer,
+    TResult Function()? finished,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -54,6 +57,7 @@ mixin _$QuestionState {
     required TResult Function(AnswerSelected value) answerSelected,
     required TResult Function(GoodAnswer value) goodAnswer,
     required TResult Function(WrongAnswer value) wrongAnswer,
+    required TResult Function(Finished value) finished,
     required TResult Function(Error value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -64,6 +68,7 @@ mixin _$QuestionState {
     TResult Function(AnswerSelected value)? answerSelected,
     TResult Function(GoodAnswer value)? goodAnswer,
     TResult Function(WrongAnswer value)? wrongAnswer,
+    TResult Function(Finished value)? finished,
     TResult Function(Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -74,6 +79,7 @@ mixin _$QuestionState {
     TResult Function(AnswerSelected value)? answerSelected,
     TResult Function(GoodAnswer value)? goodAnswer,
     TResult Function(WrongAnswer value)? wrongAnswer,
+    TResult Function(Finished value)? finished,
     TResult Function(Error value)? error,
     required TResult orElse(),
   }) =>
@@ -140,6 +146,7 @@ class _$Initial implements Initial {
     required TResult Function(String answer) answerSelected,
     required TResult Function() goodAnswer,
     required TResult Function() wrongAnswer,
+    required TResult Function() finished,
     required TResult Function(String message) error,
   }) {
     return init();
@@ -153,6 +160,7 @@ class _$Initial implements Initial {
     TResult Function(String answer)? answerSelected,
     TResult Function()? goodAnswer,
     TResult Function()? wrongAnswer,
+    TResult Function()? finished,
     TResult Function(String message)? error,
   }) {
     return init?.call();
@@ -166,6 +174,7 @@ class _$Initial implements Initial {
     TResult Function(String answer)? answerSelected,
     TResult Function()? goodAnswer,
     TResult Function()? wrongAnswer,
+    TResult Function()? finished,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -183,6 +192,7 @@ class _$Initial implements Initial {
     required TResult Function(AnswerSelected value) answerSelected,
     required TResult Function(GoodAnswer value) goodAnswer,
     required TResult Function(WrongAnswer value) wrongAnswer,
+    required TResult Function(Finished value) finished,
     required TResult Function(Error value) error,
   }) {
     return init(this);
@@ -196,6 +206,7 @@ class _$Initial implements Initial {
     TResult Function(AnswerSelected value)? answerSelected,
     TResult Function(GoodAnswer value)? goodAnswer,
     TResult Function(WrongAnswer value)? wrongAnswer,
+    TResult Function(Finished value)? finished,
     TResult Function(Error value)? error,
   }) {
     return init?.call(this);
@@ -209,6 +220,7 @@ class _$Initial implements Initial {
     TResult Function(AnswerSelected value)? answerSelected,
     TResult Function(GoodAnswer value)? goodAnswer,
     TResult Function(WrongAnswer value)? wrongAnswer,
+    TResult Function(Finished value)? finished,
     TResult Function(Error value)? error,
     required TResult orElse(),
   }) {
@@ -295,6 +307,7 @@ class _$Loaded implements Loaded {
     required TResult Function(String answer) answerSelected,
     required TResult Function() goodAnswer,
     required TResult Function() wrongAnswer,
+    required TResult Function() finished,
     required TResult Function(String message) error,
   }) {
     return loaded(questions);
@@ -308,6 +321,7 @@ class _$Loaded implements Loaded {
     TResult Function(String answer)? answerSelected,
     TResult Function()? goodAnswer,
     TResult Function()? wrongAnswer,
+    TResult Function()? finished,
     TResult Function(String message)? error,
   }) {
     return loaded?.call(questions);
@@ -321,6 +335,7 @@ class _$Loaded implements Loaded {
     TResult Function(String answer)? answerSelected,
     TResult Function()? goodAnswer,
     TResult Function()? wrongAnswer,
+    TResult Function()? finished,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -338,6 +353,7 @@ class _$Loaded implements Loaded {
     required TResult Function(AnswerSelected value) answerSelected,
     required TResult Function(GoodAnswer value) goodAnswer,
     required TResult Function(WrongAnswer value) wrongAnswer,
+    required TResult Function(Finished value) finished,
     required TResult Function(Error value) error,
   }) {
     return loaded(this);
@@ -351,6 +367,7 @@ class _$Loaded implements Loaded {
     TResult Function(AnswerSelected value)? answerSelected,
     TResult Function(GoodAnswer value)? goodAnswer,
     TResult Function(WrongAnswer value)? wrongAnswer,
+    TResult Function(Finished value)? finished,
     TResult Function(Error value)? error,
   }) {
     return loaded?.call(this);
@@ -364,6 +381,7 @@ class _$Loaded implements Loaded {
     TResult Function(AnswerSelected value)? answerSelected,
     TResult Function(GoodAnswer value)? goodAnswer,
     TResult Function(WrongAnswer value)? wrongAnswer,
+    TResult Function(Finished value)? finished,
     TResult Function(Error value)? error,
     required TResult orElse(),
   }) {
@@ -453,6 +471,7 @@ class _$AnswerSelected implements AnswerSelected {
     required TResult Function(String answer) answerSelected,
     required TResult Function() goodAnswer,
     required TResult Function() wrongAnswer,
+    required TResult Function() finished,
     required TResult Function(String message) error,
   }) {
     return answerSelected(answer);
@@ -466,6 +485,7 @@ class _$AnswerSelected implements AnswerSelected {
     TResult Function(String answer)? answerSelected,
     TResult Function()? goodAnswer,
     TResult Function()? wrongAnswer,
+    TResult Function()? finished,
     TResult Function(String message)? error,
   }) {
     return answerSelected?.call(answer);
@@ -479,6 +499,7 @@ class _$AnswerSelected implements AnswerSelected {
     TResult Function(String answer)? answerSelected,
     TResult Function()? goodAnswer,
     TResult Function()? wrongAnswer,
+    TResult Function()? finished,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -496,6 +517,7 @@ class _$AnswerSelected implements AnswerSelected {
     required TResult Function(AnswerSelected value) answerSelected,
     required TResult Function(GoodAnswer value) goodAnswer,
     required TResult Function(WrongAnswer value) wrongAnswer,
+    required TResult Function(Finished value) finished,
     required TResult Function(Error value) error,
   }) {
     return answerSelected(this);
@@ -509,6 +531,7 @@ class _$AnswerSelected implements AnswerSelected {
     TResult Function(AnswerSelected value)? answerSelected,
     TResult Function(GoodAnswer value)? goodAnswer,
     TResult Function(WrongAnswer value)? wrongAnswer,
+    TResult Function(Finished value)? finished,
     TResult Function(Error value)? error,
   }) {
     return answerSelected?.call(this);
@@ -522,6 +545,7 @@ class _$AnswerSelected implements AnswerSelected {
     TResult Function(AnswerSelected value)? answerSelected,
     TResult Function(GoodAnswer value)? goodAnswer,
     TResult Function(WrongAnswer value)? wrongAnswer,
+    TResult Function(Finished value)? finished,
     TResult Function(Error value)? error,
     required TResult orElse(),
   }) {
@@ -586,6 +610,7 @@ class _$GoodAnswer implements GoodAnswer {
     required TResult Function(String answer) answerSelected,
     required TResult Function() goodAnswer,
     required TResult Function() wrongAnswer,
+    required TResult Function() finished,
     required TResult Function(String message) error,
   }) {
     return goodAnswer();
@@ -599,6 +624,7 @@ class _$GoodAnswer implements GoodAnswer {
     TResult Function(String answer)? answerSelected,
     TResult Function()? goodAnswer,
     TResult Function()? wrongAnswer,
+    TResult Function()? finished,
     TResult Function(String message)? error,
   }) {
     return goodAnswer?.call();
@@ -612,6 +638,7 @@ class _$GoodAnswer implements GoodAnswer {
     TResult Function(String answer)? answerSelected,
     TResult Function()? goodAnswer,
     TResult Function()? wrongAnswer,
+    TResult Function()? finished,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -629,6 +656,7 @@ class _$GoodAnswer implements GoodAnswer {
     required TResult Function(AnswerSelected value) answerSelected,
     required TResult Function(GoodAnswer value) goodAnswer,
     required TResult Function(WrongAnswer value) wrongAnswer,
+    required TResult Function(Finished value) finished,
     required TResult Function(Error value) error,
   }) {
     return goodAnswer(this);
@@ -642,6 +670,7 @@ class _$GoodAnswer implements GoodAnswer {
     TResult Function(AnswerSelected value)? answerSelected,
     TResult Function(GoodAnswer value)? goodAnswer,
     TResult Function(WrongAnswer value)? wrongAnswer,
+    TResult Function(Finished value)? finished,
     TResult Function(Error value)? error,
   }) {
     return goodAnswer?.call(this);
@@ -655,6 +684,7 @@ class _$GoodAnswer implements GoodAnswer {
     TResult Function(AnswerSelected value)? answerSelected,
     TResult Function(GoodAnswer value)? goodAnswer,
     TResult Function(WrongAnswer value)? wrongAnswer,
+    TResult Function(Finished value)? finished,
     TResult Function(Error value)? error,
     required TResult orElse(),
   }) {
@@ -715,6 +745,7 @@ class _$WrongAnswer implements WrongAnswer {
     required TResult Function(String answer) answerSelected,
     required TResult Function() goodAnswer,
     required TResult Function() wrongAnswer,
+    required TResult Function() finished,
     required TResult Function(String message) error,
   }) {
     return wrongAnswer();
@@ -728,6 +759,7 @@ class _$WrongAnswer implements WrongAnswer {
     TResult Function(String answer)? answerSelected,
     TResult Function()? goodAnswer,
     TResult Function()? wrongAnswer,
+    TResult Function()? finished,
     TResult Function(String message)? error,
   }) {
     return wrongAnswer?.call();
@@ -741,6 +773,7 @@ class _$WrongAnswer implements WrongAnswer {
     TResult Function(String answer)? answerSelected,
     TResult Function()? goodAnswer,
     TResult Function()? wrongAnswer,
+    TResult Function()? finished,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -758,6 +791,7 @@ class _$WrongAnswer implements WrongAnswer {
     required TResult Function(AnswerSelected value) answerSelected,
     required TResult Function(GoodAnswer value) goodAnswer,
     required TResult Function(WrongAnswer value) wrongAnswer,
+    required TResult Function(Finished value) finished,
     required TResult Function(Error value) error,
   }) {
     return wrongAnswer(this);
@@ -771,6 +805,7 @@ class _$WrongAnswer implements WrongAnswer {
     TResult Function(AnswerSelected value)? answerSelected,
     TResult Function(GoodAnswer value)? goodAnswer,
     TResult Function(WrongAnswer value)? wrongAnswer,
+    TResult Function(Finished value)? finished,
     TResult Function(Error value)? error,
   }) {
     return wrongAnswer?.call(this);
@@ -784,6 +819,7 @@ class _$WrongAnswer implements WrongAnswer {
     TResult Function(AnswerSelected value)? answerSelected,
     TResult Function(GoodAnswer value)? goodAnswer,
     TResult Function(WrongAnswer value)? wrongAnswer,
+    TResult Function(Finished value)? finished,
     TResult Function(Error value)? error,
     required TResult orElse(),
   }) {
@@ -796,6 +832,139 @@ class _$WrongAnswer implements WrongAnswer {
 
 abstract class WrongAnswer implements QuestionState {
   const factory WrongAnswer() = _$WrongAnswer;
+}
+
+/// @nodoc
+abstract class _$$FinishedCopyWith<$Res> {
+  factory _$$FinishedCopyWith(
+          _$Finished value, $Res Function(_$Finished) then) =
+      __$$FinishedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$FinishedCopyWithImpl<$Res> extends _$QuestionStateCopyWithImpl<$Res>
+    implements _$$FinishedCopyWith<$Res> {
+  __$$FinishedCopyWithImpl(_$Finished _value, $Res Function(_$Finished) _then)
+      : super(_value, (v) => _then(v as _$Finished));
+
+  @override
+  _$Finished get _value => super._value as _$Finished;
+}
+
+/// @nodoc
+
+class _$Finished implements Finished {
+  const _$Finished();
+
+  @override
+  String toString() {
+    return 'QuestionState.finished()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$Finished);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(List<Question> questions) loaded,
+    required TResult Function(String answer) answerSelected,
+    required TResult Function() goodAnswer,
+    required TResult Function() wrongAnswer,
+    required TResult Function() finished,
+    required TResult Function(String message) error,
+  }) {
+    return finished();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(List<Question> questions)? loaded,
+    TResult Function(String answer)? answerSelected,
+    TResult Function()? goodAnswer,
+    TResult Function()? wrongAnswer,
+    TResult Function()? finished,
+    TResult Function(String message)? error,
+  }) {
+    return finished?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(List<Question> questions)? loaded,
+    TResult Function(String answer)? answerSelected,
+    TResult Function()? goodAnswer,
+    TResult Function()? wrongAnswer,
+    TResult Function()? finished,
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) {
+    if (finished != null) {
+      return finished();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) init,
+    required TResult Function(Loaded value) loaded,
+    required TResult Function(AnswerSelected value) answerSelected,
+    required TResult Function(GoodAnswer value) goodAnswer,
+    required TResult Function(WrongAnswer value) wrongAnswer,
+    required TResult Function(Finished value) finished,
+    required TResult Function(Error value) error,
+  }) {
+    return finished(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? init,
+    TResult Function(Loaded value)? loaded,
+    TResult Function(AnswerSelected value)? answerSelected,
+    TResult Function(GoodAnswer value)? goodAnswer,
+    TResult Function(WrongAnswer value)? wrongAnswer,
+    TResult Function(Finished value)? finished,
+    TResult Function(Error value)? error,
+  }) {
+    return finished?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? init,
+    TResult Function(Loaded value)? loaded,
+    TResult Function(AnswerSelected value)? answerSelected,
+    TResult Function(GoodAnswer value)? goodAnswer,
+    TResult Function(WrongAnswer value)? wrongAnswer,
+    TResult Function(Finished value)? finished,
+    TResult Function(Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (finished != null) {
+      return finished(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Finished implements QuestionState {
+  const factory Finished() = _$Finished;
 }
 
 /// @nodoc
@@ -865,6 +1034,7 @@ class _$Error implements Error {
     required TResult Function(String answer) answerSelected,
     required TResult Function() goodAnswer,
     required TResult Function() wrongAnswer,
+    required TResult Function() finished,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -878,6 +1048,7 @@ class _$Error implements Error {
     TResult Function(String answer)? answerSelected,
     TResult Function()? goodAnswer,
     TResult Function()? wrongAnswer,
+    TResult Function()? finished,
     TResult Function(String message)? error,
   }) {
     return error?.call(message);
@@ -891,6 +1062,7 @@ class _$Error implements Error {
     TResult Function(String answer)? answerSelected,
     TResult Function()? goodAnswer,
     TResult Function()? wrongAnswer,
+    TResult Function()? finished,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -908,6 +1080,7 @@ class _$Error implements Error {
     required TResult Function(AnswerSelected value) answerSelected,
     required TResult Function(GoodAnswer value) goodAnswer,
     required TResult Function(WrongAnswer value) wrongAnswer,
+    required TResult Function(Finished value) finished,
     required TResult Function(Error value) error,
   }) {
     return error(this);
@@ -921,6 +1094,7 @@ class _$Error implements Error {
     TResult Function(AnswerSelected value)? answerSelected,
     TResult Function(GoodAnswer value)? goodAnswer,
     TResult Function(WrongAnswer value)? wrongAnswer,
+    TResult Function(Finished value)? finished,
     TResult Function(Error value)? error,
   }) {
     return error?.call(this);
@@ -934,6 +1108,7 @@ class _$Error implements Error {
     TResult Function(AnswerSelected value)? answerSelected,
     TResult Function(GoodAnswer value)? goodAnswer,
     TResult Function(WrongAnswer value)? wrongAnswer,
+    TResult Function(Finished value)? finished,
     TResult Function(Error value)? error,
     required TResult orElse(),
   }) {

@@ -74,7 +74,7 @@ class _GamePageState extends State<GamePage> {
                       onLeftSwipe: (Card card) {
                         setState(() {
                           if (_currentIndex >= 0) _currentIndex += 1;
-                          cubit?.nextQuestion(_questions);
+                          cubit?.nextQuestion(_questions );
                         });
                       },
                       onRightSwipe: (Card) {
@@ -96,6 +96,9 @@ class _GamePageState extends State<GamePage> {
                     return ListView(children: [
                       _game(_questions , state),
                     ]);
+                  }
+                  if(state is Finished){
+                    return Text("FINISHED");
                   }
                   if (state is Error) {
                     return Padding(
@@ -120,7 +123,6 @@ class _GamePageState extends State<GamePage> {
                     );
                   }
                   return CircularProgressIndicator();
-                  //return const Text("lool");
                 },
               ))),
       floatingActionButton: FloatingActionButton(

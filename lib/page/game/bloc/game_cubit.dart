@@ -9,17 +9,17 @@ import 'package:test_flutter/page/game/bloc/game_state.dart';
 import '../../../model/question.dart';
 
 class GameCubit extends Cubit<QuestionState> {
-  final QuestionRepository repository ;
+  final QuestionRepository repository;
 
-  late Question  _lastQuestion;
+  late Question _lastQuestion;
 
-  int score = 0 ;
+  int score = 0;
 
   String selectedAnswer = '';
 
   GameCubit({required this.repository}) : super(Initial());
 
-  setAnswer(String answer){
+  setAnswer(String answer) {
     selectedAnswer = answer;
   }
 
@@ -30,36 +30,35 @@ class GameCubit extends Cubit<QuestionState> {
       final list = await repository.getQuestionsOfTheDay();
       _lastQuestion = list.last;
       emit(Loaded(list));
-
-    } on Exception catch (exeption){
+    } on Exception catch (exeption) {
       emit(Error(exeption.toString()));
     }
   }
 
-  void onAnswerValidated(Question question )
-  {
-      try {
-      if(question.correct_answer == selectedAnswer){
-        if(question.difficulty == "eazy") score++;
-        else if(question.difficulty == "medium") score+= 2;
-        else if(question.difficulty == "hard") score+= 3;
+  void onAnswerValidated(Question question) {
+    try {
+      if (question.correct_answer == _lastQuestion.correct_answer){
+        emit(Finished());
+        return;
+      }
+
+      if (question.correct_answer == selectedAnswer) {
+        if (question.difficulty == "eazy")
+          score++;
+        else if (question.difficulty == "medium")
+          score += 2;
+        else if (question.difficulty == "hard") score += 3;
         emit(const GoodAnswer());
       }
-      for ( var answer in question.incorrect_answers){
-          if(answer == selectedAnswer )  emit(const WrongAnswer());
+      for (var answer in question.incorrect_answers) {
+        if (answer == selectedAnswer) emit(const WrongAnswer());
       }
-    } on Exception catch (exeption){
+    } on Exception catch (exeption) {
       emit(Error(exeption.toString()));
     }
-
   }
 
-
-  void nextQuestion(List<Question> questions)
-  {
+  void nextQuestion(List<Question> questions) {
     emit(Loaded(questions));
   }
-
-
-
 }
