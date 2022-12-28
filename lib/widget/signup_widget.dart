@@ -129,13 +129,6 @@ class _SignUpWidgetState extends State<SignUpWidget> {
     final isValid = formKey.currentState!.validate();
     if(!isValid) return;
 
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => Center(child: CircularProgressIndicator()),
-    );
-
-    context.goNamed('game');
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword (
         email : emailController.text.trim(),
@@ -146,17 +139,12 @@ class _SignUpWidgetState extends State<SignUpWidget> {
             email: emailController.text.trim(),
             nickname: nicknameController.text.trim()
           ),
-
-
+          context.goNamed('game')
       });
-
-
     } on FirebaseAuthException catch (e) {
       print(e);
       Utils.showSnackBar(e.message);
     }
-
-
   }
 
   Future createUser({required String? uid , required String email , required String nickname}) async {
@@ -167,9 +155,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
       email: email,
       score : 0
     );
-
     final json = user.toJson();
-
 
     await docUser.set(json).then((value) => context.goNamed('game'));
   }

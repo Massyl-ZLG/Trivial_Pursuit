@@ -120,6 +120,7 @@ class _GamePageState extends State<GamePage> {
                     );
                   }
                   return CircularProgressIndicator();
+                  //return const Text("lool");
                 },
               ))),
       floatingActionButton: FloatingActionButton(

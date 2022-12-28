@@ -94,11 +94,6 @@ class _LoginWidgetState extends State<LoginWidget> {
       ));
 
   Future signIn() async {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => const Center(child: CircularProgressIndicator()),
-    );
 
     try {
       await FirebaseAuth.instance

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:test_flutter/data/dataSources/repositories/user_repository.dart';
 import 'package:test_flutter/page/profil/bloc/profil_state.dart';
 import '../utils/utils.dart';
@@ -104,6 +105,7 @@ class _ProfilPageState extends State<ProfilPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           FirebaseAuth.instance.signOut();
+          context.goNamed("login");
           //_currentResponse = [];
         },
         child: const Icon(

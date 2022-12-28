@@ -16,7 +16,6 @@ Future<void> main() async {
   runApp(MyApp());
 }
 
-
 class MyApp extends StatelessWidget {
   static const String title = 'Setup Firebase';
 
@@ -24,68 +23,59 @@ class MyApp extends StatelessWidget {
   static var _shellNavigatorKey;
 
   final _router = GoRouter(
-      navigatorKey: _rootNavigatorKey,
-      initialLocation: '/',
-      routes: [
+    navigatorKey: _rootNavigatorKey,
+    initialLocation: '/',
+    routes: [
       ShellRoute(
-      navigatorKey: _shellNavigatorKey,
-      builder: (context, state, child) {
-        return Home(child: child);
-      },
-      routes: [
-    GoRoute(
-        path : '/',
-        builder: (context , state){
-          return AuthPage();
-        }
-    ),
-    GoRoute(
-        path: '/leaderboard',
-        name : 'leaderboard',
-        builder : (context , state) {
-          return LeaderboardPage();
-        }
-    ),
-    GoRoute(
-        path: '/game',
-        name : 'game',
-        builder : (context , state) {
-          return GamePage();
-        }
-    ),
-    GoRoute(
-        path: '/profil',
-        name : 'profil',
-        builder : (context , state) {
-          return ProfilPage();
+        navigatorKey: _shellNavigatorKey,
+        builder: (context, state, child) {
+          return Home(child: child);
         },
-    ),
-      ],
+        routes: [
+          GoRoute(
+              path: '/',
+              name: 'login',
+              builder: (context, state) {
+                return AuthPage();
+              }),
+          GoRoute(
+              path: '/leaderboard',
+              name: 'leaderboard',
+              builder: (context, state) {
+                return LeaderboardPage();
+              }),
+          GoRoute(
+              path: '/game',
+              name: 'game',
+              builder: (context, state) {
+                return GamePage();
+              }),
+          GoRoute(
+            path: '/profil',
+            name: 'profil',
+            builder: (context, state) {
+              return ProfilPage();
+            },
+          ),
+        ],
       ),
-      ],
+    ],
   );
-
-
-
 
   @override
   Widget build(BuildContext context) => MaterialApp.router(
-    title : "Exemple",
-    theme: ThemeData(),
-    darkTheme: ThemeData(),
-    debugShowCheckedModeBanner: false,
-    routeInformationProvider: _router.routeInformationProvider,
-    routeInformationParser: _router.routeInformationParser,
-    routerDelegate: _router.routerDelegate,
-    backButtonDispatcher: _router.backButtonDispatcher,
-  );
-
-
+        title: "Exemple",
+        theme: ThemeData(),
+        darkTheme: ThemeData(),
+        debugShowCheckedModeBanner: false,
+        routeInformationProvider: _router.routeInformationProvider,
+        routeInformationParser: _router.routeInformationParser,
+        routerDelegate: _router.routerDelegate,
+        backButtonDispatcher: _router.backButtonDispatcher,
+      );
 }
 /*
-
 class MyHomePage extends StatelessWidget {
-
   Widget build(BuildContext context) => Scaffold(
         body : StreamBuilder<User?>(
           stream: FirebaseAuth.instance.authStateChanges(),
@@ -102,8 +92,5 @@ class MyHomePage extends StatelessWidget {
           },
         )
     );
-
 }
 */
-
-

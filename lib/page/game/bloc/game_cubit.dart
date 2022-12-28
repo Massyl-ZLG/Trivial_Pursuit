@@ -30,6 +30,7 @@ class GameCubit extends Cubit<QuestionState> {
       final list = await repository.getQuestionsOfTheDay();
       _lastQuestion = list.last;
       emit(Loaded(list));
+
     } on Exception catch (exeption){
       emit(Error(exeption.toString()));
     }
