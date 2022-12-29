@@ -2,22 +2,24 @@
 
 import 'dart:developer';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter/data/dataSources/repositories/question_repository.dart';
+import 'package:test_flutter/data/dataSources/repositories/user_repository.dart';
 import 'package:test_flutter/page/game/bloc/game_state.dart';
 
 import '../../../model/question.dart';
 
 class GameCubit extends Cubit<QuestionState> {
   final QuestionRepository repository;
-
+  final user = FirebaseAuth.instance.currentUser;
   late Question _lastQuestion;
 
   int score = 0;
 
   String selectedAnswer = '';
 
-  GameCubit({required this.repository}) : super(Initial());
+  GameCubit( {required this.repository}) : super(Initial());
 
   setAnswer(String answer) {
     selectedAnswer = answer;
@@ -38,6 +40,7 @@ class GameCubit extends Cubit<QuestionState> {
   void onAnswerValidated(Question question) {
     try {
       if (question.correct_answer == _lastQuestion.correct_answer){
+
         emit(Finished());
         return;
       }

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:html_unescape/html_unescape.dart';
 import 'package:swiping_card_deck/swiping_card_deck.dart';
 import 'package:test_flutter/data/dataSources/repositories/question_repository.dart';
+import 'package:test_flutter/data/dataSources/repositories/user_repository.dart';
 import 'package:test_flutter/page/game/bloc/game_cubit.dart';
 
 import '../../model/question.dart';
@@ -26,12 +27,12 @@ class _GamePageState extends State<GamePage> {
   List<Question> _questions = [];
   String _selectedAnswer = "";
 
-
   void createQuestion(Question question) {
     /*_currentResponse = [...question.incorrect_answers, question.correct_answer]
       ..shuffle()
       ..toList();*/
-    _currentResponse = [...question.incorrect_answers, question.correct_answer].toList();
+    _currentResponse =
+        [...question.incorrect_answers, question.correct_answer].toList();
   }
 
   @override
@@ -42,8 +43,7 @@ class _GamePageState extends State<GamePage> {
           child: BlocProvider(
               create: (context) {
                 cubit = GameCubit(
-                    repository:
-                        RepositoryProvider.of<QuestionRepository>(context));
+                    repository: RepositoryProvider.of<QuestionRepository>(context));
                 return cubit!..fetchQuestion();
               },
               child: BlocConsumer<GameCubit, QuestionState>(
@@ -74,7 +74,7 @@ class _GamePageState extends State<GamePage> {
                       onLeftSwipe: (Card card) {
                         setState(() {
                           if (_currentIndex >= 0) _currentIndex += 1;
-                          cubit?.nextQuestion(_questions );
+                          cubit?.nextQuestion(_questions);
                         });
                       },
                       onRightSwipe: (Card) {
@@ -84,21 +84,21 @@ class _GamePageState extends State<GamePage> {
                       cardWidth: 100,
                     );
                     return ListView(children: [
-                      _game(state.questions , state),
+                      _game(state.questions, state),
                     ]);
                   }
                   if (state is GoodAnswer) {
                     return ListView(children: [
-                      _game(_questions , state) ,
+                      _game(_questions, state),
                     ]);
                   }
                   if (state is WrongAnswer) {
                     return ListView(children: [
-                      _game(_questions , state),
+                      _game(_questions, state),
                     ]);
                   }
-                  if(state is Finished){
-                    return Text("FINISHED");
+                  if (state is Finished) {
+                    return _finishedGame();
                   }
                   if (state is Error) {
                     return Padding(
@@ -143,8 +143,8 @@ class _GamePageState extends State<GamePage> {
     return Colors.red;
   }
 
-  MaterialColor _finalAnswerColor(state , String answer, String trueAnswer) {
-    if(state is WrongAnswer || state is GoodAnswer){
+  MaterialColor _finalAnswerColor(state, String answer, String trueAnswer) {
+    if (state is WrongAnswer || state is GoodAnswer) {
       if (answer == trueAnswer) return Colors.green;
       return Colors.red;
     }
@@ -211,36 +211,35 @@ class _GamePageState extends State<GamePage> {
   }
 
   Widget _answerMessage(state) {
-    if(state is WrongAnswer || state is GoodAnswer){
-    return Padding(
-      padding: EdgeInsets.only(left: 15, bottom: 20, right: 20, top: 10),
-      //apply padding to some sides only
-      child: Text(
-        state is GoodAnswer
-            ? "Félicitation c'est une bonne réponse"
-            : "Mauvaise réponse",
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          color: state is GoodAnswer ? Colors.green : Colors.red,
-          fontSize: 25.0,
-          shadows: [
-            Shadow(
-              blurRadius: 10.0,
-              color: state is GoodAnswer ? Colors.blue : Colors.grey,
-              offset: Offset(5.0, 5.0),
-            ),
-          ],
+    if (state is WrongAnswer || state is GoodAnswer) {
+      return Padding(
+        padding: EdgeInsets.only(left: 15, bottom: 20, right: 20, top: 10),
+        //apply padding to some sides only
+        child: Text(
+          state is GoodAnswer
+              ? "Félicitation c'est une bonne réponse"
+              : "Mauvaise réponse",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: state is GoodAnswer ? Colors.green : Colors.red,
+            fontSize: 25.0,
+            shadows: [
+              Shadow(
+                blurRadius: 10.0,
+                color: state is GoodAnswer ? Colors.blue : Colors.grey,
+                offset: Offset(5.0, 5.0),
+              ),
+            ],
+          ),
         ),
-      ),
-    );
+      );
     }
 
     return const Padding(
-        padding: EdgeInsets.only(left: 15, bottom: 20, right: 20, top: 10)
-    );
+        padding: EdgeInsets.only(left: 15, bottom: 20, right: 20, top: 10));
   }
 
-  Widget _game(List<Question> question , state ) {
+  Widget _game(List<Question> question, state) {
     return Column(children: [
       _scoreAndProgress(),
       _answerMessage(state),
@@ -271,8 +270,10 @@ class _GamePageState extends State<GamePage> {
                         });
                       },
                       child: Card(
-                        color: ( _selectedAnswer == answer && state is Loaded ) ? Colors.deepPurple : _finalAnswerColor(state ,answer,
-                            _questions[_currentIndex].correct_answer) ,
+                        color: (_selectedAnswer == answer && state is Loaded)
+                            ? Colors.deepPurple
+                            : _finalAnswerColor(state, answer,
+                                _questions[_currentIndex].correct_answer),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -288,5 +289,26 @@ class _GamePageState extends State<GamePage> {
                       )))
                   .toList()))
     ]);
+  }
+
+  Widget _finishedGame() {
+    return Padding(
+        padding:
+            const EdgeInsets.only(left: 90, bottom: 50, right: 20, top: 200),
+        //apply padding to some sides only
+        child: Column(children: [
+          Expanded(
+              child: Container(
+                  margin: const EdgeInsets.fromLTRB(0, 10, 10, 0),
+                  padding: const EdgeInsets.all(4.0),
+                  child: Text(
+                    "Tu as un score ${cubit?.score.toString()} félicitation !",
+                    textAlign: TextAlign.left,
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 28.0,
+                    ),
+                  ))),
+        ]));
   }
 }

@@ -22,7 +22,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Billion Dollar App')),
+      appBar: AppBar(title: const Text('Trivial Pursuit')),
       body: widget.child,
       bottomNavigationBar: Visibility(
         visible: _showAppBar,

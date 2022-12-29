@@ -21,4 +21,9 @@ class UserRepository {
   Future<TrivialUser?> getUser(String? uid ) async {
     return await _usersFirestore.get(uid);
   }
+
+
+  Future<TrivialUser?> setScore(String? uid , int score)  async {
+    return await _usersFirestore.setScore(uid , score);
+  }
 }
