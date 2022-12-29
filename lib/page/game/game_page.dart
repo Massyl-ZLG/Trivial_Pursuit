@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,7 +23,7 @@ class _GamePageState extends State<GamePage> {
   SwipingCardDeck? _deck;
 
   int _currentIndex = 0;
-
+  final user = FirebaseAuth.instance.currentUser;
   List<String> _currentResponse = [];
   List<Question> _questions = [];
   String _selectedAnswer = "";
@@ -42,8 +43,10 @@ class _GamePageState extends State<GamePage> {
           create: (context) => QuestionRepository.getInstance(),
           child: BlocProvider(
               create: (context) {
+                /*  cubit = GameCubit(context.read<UserRepository>(),
+                    context.read<QuestionRepository>());*/
                 cubit = GameCubit(
-                    repository: RepositoryProvider.of<QuestionRepository>(context));
+                    RepositoryProvider.of<QuestionRepository>(context));
                 return cubit!..fetchQuestion();
               },
               child: BlocConsumer<GameCubit, QuestionState>(
@@ -292,23 +295,43 @@ class _GamePageState extends State<GamePage> {
   }
 
   Widget _finishedGame() {
-    return Padding(
-        padding:
-            const EdgeInsets.only(left: 90, bottom: 50, right: 20, top: 200),
-        //apply padding to some sides only
-        child: Column(children: [
-          Expanded(
-              child: Container(
-                  margin: const EdgeInsets.fromLTRB(0, 10, 10, 0),
-                  padding: const EdgeInsets.all(4.0),
-                  child: Text(
-                    "Tu as un score ${cubit?.score.toString()} félicitation !",
-                    textAlign: TextAlign.left,
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 28.0,
-                    ),
-                  ))),
-        ]));
+    return Container(
+        width: double.infinity,
+        height: double.infinity,
+        alignment: Alignment.center,
+        child: Column(
+          children: [
+            const Padding(
+                padding:
+                    EdgeInsets.only(left: 15, bottom: 0, right: 20, top: 50),
+                child: Image(
+                  image: NetworkImage(
+                      'https://i.pinimg.com/originals/3a/bb/69/3abb69a4adc81e52d80e83f3d60c97f6.jpg'),
+                )),
+            Padding(
+                padding:
+                    EdgeInsets.only(left: 15, bottom: 20, right: 20, top: 70),
+                //apply padding horizontal or vertical only
+                child: Text(
+                  "Félicitation ${user?.email.toString()} tu as un score ${cubit?.score.toString()}  !",
+                  textAlign: TextAlign.left,
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 28.0,
+                  ),
+                )),
+            Padding(
+                padding:
+                    EdgeInsets.only(left: 15, bottom: 20, right: 20, top: 70),
+                //apply padding horizontal or vertical only
+                child: IconButton(
+                  iconSize: 40,
+                  icon: const Icon(Icons.refresh),
+                  onPressed: () {
+                    // ...
+                  },
+                ))
+          ],
+        ));
   }
 }

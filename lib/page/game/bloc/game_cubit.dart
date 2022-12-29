@@ -12,6 +12,7 @@ import '../../../model/question.dart';
 
 class GameCubit extends Cubit<QuestionState> {
   final QuestionRepository repository;
+  //final UserRepository userRepository;
   final user = FirebaseAuth.instance.currentUser;
   late Question _lastQuestion;
 
@@ -19,7 +20,9 @@ class GameCubit extends Cubit<QuestionState> {
 
   String selectedAnswer = '';
 
-  GameCubit( {required this.repository}) : super(Initial());
+  //GameCubit( this.userRepository , this.repository) : super(Initial());
+
+  GameCubit(  this.repository) : super(Initial());
 
   setAnswer(String answer) {
     selectedAnswer = answer;
@@ -40,7 +43,6 @@ class GameCubit extends Cubit<QuestionState> {
   void onAnswerValidated(Question question) {
     try {
       if (question.correct_answer == _lastQuestion.correct_answer){
-
         emit(Finished());
         return;
       }
