@@ -42,6 +42,7 @@ class GameCubit extends Cubit<QuestionState> {
   void onAnswerValidated(Question question) {
     try {
       if (question.correct_answer == _lastQuestion.correct_answer){
+        userRepository.setScore(user?.uid, score);
         emit(Finished());
         return;
       }
