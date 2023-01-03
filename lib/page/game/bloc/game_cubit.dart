@@ -12,7 +12,7 @@ import '../../../model/question.dart';
 
 class GameCubit extends Cubit<QuestionState> {
   final QuestionRepository repository;
-  //final UserRepository userRepository;
+  final UserRepository userRepository;
   final user = FirebaseAuth.instance.currentUser;
   late Question _lastQuestion;
 
@@ -20,9 +20,8 @@ class GameCubit extends Cubit<QuestionState> {
 
   String selectedAnswer = '';
 
-  //GameCubit( this.userRepository , this.repository) : super(Initial());
+  GameCubit( this.userRepository , this.repository) : super(Initial());
 
-  GameCubit(  this.repository) : super(Initial());
 
   setAnswer(String answer) {
     selectedAnswer = answer;

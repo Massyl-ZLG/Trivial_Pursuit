@@ -39,14 +39,16 @@ class _GamePageState extends State<GamePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: RepositoryProvider(
-          create: (context) => QuestionRepository.getInstance(),
+      body: MultiRepositoryProvider(
+          providers: [
+            RepositoryProvider<QuestionRepository>(create: (context) => QuestionRepository.getInstance()),
+            RepositoryProvider<UserRepository>(create: (context) => UserRepository.getInstance()),
+          ],
           child: BlocProvider(
               create: (context) {
-                /*  cubit = GameCubit(context.read<UserRepository>(),
-                    context.read<QuestionRepository>());*/
-                cubit = GameCubit(
-                    RepositoryProvider.of<QuestionRepository>(context));
+                cubit = GameCubit(RepositoryProvider.of<UserRepository>(context),
+                    RepositoryProvider.of<QuestionRepository>(context),
+                );
                 return cubit!..fetchQuestion();
               },
               child: BlocConsumer<GameCubit, QuestionState>(
