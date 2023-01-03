@@ -62,12 +62,14 @@ class _GamePageState extends State<GamePage> {
                         return Card(
                             color: _questionColor(e.difficulty),
                             shape: _cardBorder(),
-                            margin: const EdgeInsets.all(20.0),
+                            margin: const EdgeInsets.only(
+                            left: 10, bottom: 5, right: 10, top: 5),
                             child: SizedBox(
                               height: 200,
                               width: double.infinity,
                               child: Container(
-                                  padding: const EdgeInsets.all(10.0),
+                                  padding: const EdgeInsets.only(
+                                      left: 10, bottom: 5, right: 10, top: 5),
                                   alignment: Alignment.center,
                                   child: Text(
                                     HtmlUnescape().convert(e.question),
@@ -154,7 +156,6 @@ class _GamePageState extends State<GamePage> {
       return Colors.red;
     }
 
-    //if(_selectedAnswer == answer) return  Colors.deepPurple;
     return Colors.cyan;
   }
 
@@ -264,7 +265,6 @@ class _GamePageState extends State<GamePage> {
       Container(
           height: 500,
           width: double.infinity,
-          margin: const EdgeInsets.symmetric(horizontal: 16),
           child: ListView(
               children: _currentResponse
                   .map((answer) => InkWell(
@@ -282,7 +282,8 @@ class _GamePageState extends State<GamePage> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        margin: const EdgeInsets.all(20.0),
+                        margin: const EdgeInsets.only(
+                        left: 10, bottom: 5, right: 5, top: 10),
                         child: Container(
                             padding: const EdgeInsets.all(10.0),
                             alignment: Alignment.center,
