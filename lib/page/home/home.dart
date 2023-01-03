@@ -21,7 +21,15 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Trivial Pursuit')),
+      appBar: AppBar(
+          title: Text(
+              'Trivial Pursuit',
+              style: TextStyle(
+                  color: Colors.white
+              )
+          ),
+          backgroundColor: Color(0xFFe34d40),
+      ),
       body: widget.child,
       bottomNavigationBar: Visibility(
         visible: _showAppBar,
