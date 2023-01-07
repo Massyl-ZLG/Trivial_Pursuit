@@ -43,4 +43,12 @@ class QuestionFirebase {
     return _questionRef.doc(id).delete();
   }
 
+
+  Future<void> deletePastQuestions() async {
+    var snapshots = await _questionRef.get();
+    for (var doc in snapshots.docs) {
+      if(doc.id != _getDate()) await doc.reference.delete();
+    }
+  }
+
 }
