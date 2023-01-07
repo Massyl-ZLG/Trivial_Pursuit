@@ -44,7 +44,7 @@ class _LoginWidgetState extends State<LoginWidget> {
           const SizedBox(height: 40),
           TextField(
             controller: emailController,
-            cursorColor: Colors.white,
+            cursorColor: const Color(0xFFe34d40),
             textInputAction: TextInputAction.next,
             decoration: const InputDecoration(label: Text('Email')),
             obscureText: false,
@@ -52,7 +52,7 @@ class _LoginWidgetState extends State<LoginWidget> {
           const SizedBox(height: 40),
           TextField(
             controller: passwordController,
-            cursorColor: Colors.white,
+            cursorColor: const Color(0xFFe34d40),
             textInputAction: TextInputAction.next,
             decoration: const InputDecoration(label: Text('Password')),
             obscureText: true,
@@ -60,6 +60,7 @@ class _LoginWidgetState extends State<LoginWidget> {
           const SizedBox(height: 20),
           ElevatedButton.icon(
             style: ElevatedButton.styleFrom(
+              primary: const Color(0xFFe34d40),
               minimumSize: const Size.fromHeight(50),
             ),
             icon: const Icon(Icons.lock_open, size: 32),
@@ -71,11 +72,11 @@ class _LoginWidgetState extends State<LoginWidget> {
           ),
           const SizedBox(height: 20),
           GestureDetector(
-            child: Text(
+            child: const Text(
               'Forgot Password?',
               style: TextStyle(
                 decoration: TextDecoration.underline,
-                color: Theme.of(context).colorScheme.primary,
+                color: Color(0xFFe34d40),
                 fontSize: 20,
               ),
             ),
@@ -89,7 +90,7 @@ class _LoginWidgetState extends State<LoginWidget> {
               child: const Text('Sign Up',
                   style: TextStyle(
                       decoration: TextDecoration.underline,
-                      color: Colors.lightBlue))),
+                      color: Color(0xFFe34d40)))),
         ],
       ));
 

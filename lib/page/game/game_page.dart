@@ -150,13 +150,13 @@ class _GamePageState extends State<GamePage> {
     return Colors.red;
   }
 
-  MaterialColor _finalAnswerColor(state, String answer, String trueAnswer) {
+  Color? _finalAnswerColor(state, String answer, String trueAnswer) {
     if (state is WrongAnswer || state is GoodAnswer) {
       if (answer == trueAnswer) return Colors.green;
       return Colors.red;
     }
 
-    return Colors.cyan;
+    return Colors.orange[800];
   }
 
   RoundedRectangleBorder _cardBorder() {
@@ -276,7 +276,7 @@ class _GamePageState extends State<GamePage> {
                       },
                       child: Card(
                         color: (_selectedAnswer == answer && state is Loaded)
-                            ? Colors.deepPurple
+                            ? Colors.orangeAccent
                             : _finalAnswerColor(state, answer,
                                 _questions[_currentIndex].correct_answer),
                         shape: RoundedRectangleBorder(

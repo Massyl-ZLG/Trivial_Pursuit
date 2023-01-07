@@ -71,6 +71,7 @@ class _HomeState extends State<Home> {
   int _calculateSelectedIndex(BuildContext context) {
     final GoRouter route = GoRouter.of(context);
     final String location = route.location;
+    _showAppBar = user != null;
     if (location.startsWith('/leaderboard')) {
       return 0;
     }
@@ -80,8 +81,6 @@ class _HomeState extends State<Home> {
     if (location.startsWith('/profil')) {
       return 2;
     }
-    _showAppBar = user != null;
-
     return 0;
   }
 

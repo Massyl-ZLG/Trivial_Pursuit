@@ -49,7 +49,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
             const SizedBox(height: 40),
             TextFormField(
               controller: nicknameController,
-              cursorColor: Colors.white,
+              cursorColor: const Color(0xFFe34d40),
               textInputAction: TextInputAction.next,
               decoration: const InputDecoration( label  : Text('Nickname *') ),
               obscureText: false,
@@ -62,7 +62,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
             const SizedBox(height: 40),
             TextFormField(
               controller: emailController,
-              cursorColor: Colors.white,
+              cursorColor: const Color(0xFFe34d40),
               textInputAction: TextInputAction.next,
               decoration: const InputDecoration( label  : Text('Email *') ),
               obscureText: false,
@@ -75,7 +75,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
             const SizedBox(height: 40),
             TextFormField(
               controller: passwordController,
-              cursorColor: Colors.white,
+              cursorColor: const Color(0xFFe34d40),
               textInputAction: TextInputAction.next,
               decoration: const InputDecoration(label  : Text('Password *') ),
               obscureText: true,
@@ -88,7 +88,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
             const SizedBox(height: 40),
             TextFormField(
               controller: confirmPasswordController,
-              cursorColor: Colors.white,
+              cursorColor: const Color(0xFFe34d40),
               textInputAction: TextInputAction.next,
               decoration: const InputDecoration(label  : Text('Confirm Password *') ),
               obscureText: true,
@@ -99,6 +99,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
             const SizedBox(height: 20),
             ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
+                primary: const Color(0xFFe34d40),
                 minimumSize: const Size.fromHeight(50),
               ),
               icon : const Icon(Icons.login , size: 32),
@@ -115,7 +116,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                     'Sign In',
                     style : TextStyle(
                       decoration: TextDecoration.underline,
-                      color : Colors.lightBlue
+                      color : Color(0xFFe34d40)
                     )
                 )
             ),
