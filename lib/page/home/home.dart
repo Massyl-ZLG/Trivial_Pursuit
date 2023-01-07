@@ -16,13 +16,15 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
+  final user = FirebaseAuth.instance.currentUser;
   var _showAppBar = false;
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text(
+          title: const Text(
               'Trivial Pursuit',
               style: TextStyle(
                   color: Colors.white
@@ -78,7 +80,8 @@ class _HomeState extends State<Home> {
     if (location.startsWith('/profil')) {
       return 2;
     }
-    _showAppBar = true;
+    _showAppBar = user != null;
+
     return 0;
   }
 
