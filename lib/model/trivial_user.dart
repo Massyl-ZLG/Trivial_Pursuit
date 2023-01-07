@@ -11,8 +11,8 @@ part 'trivial_user.g.dart';
 class TrivialUser with _$TrivialUser {
   /// {@macro trivial_user}
   const factory TrivialUser({ 
-    required String email,
-    required String nickname,
+    required String  email,
+    required String  nickname,
     required int score,
   }) = _TrivialUser;
   

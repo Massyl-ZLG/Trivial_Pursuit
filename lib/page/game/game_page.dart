@@ -323,17 +323,6 @@ class _GamePageState extends State<GamePage> {
                     fontSize: 28.0,
                   ),
                 )),
-            Padding(
-                padding:
-                    EdgeInsets.only(left: 15, bottom: 20, right: 20, top: 70),
-                //apply padding horizontal or vertical only
-                child: IconButton(
-                  iconSize: 40,
-                  icon: const Icon(Icons.refresh),
-                  onPressed: () {
-                    // ...
-                  },
-                ))
           ],
         ));
   }

@@ -32,10 +32,9 @@ class QuestionRepository {
       );
 
       //Delete le documents dans firestore
+      await _questionsFirestore.deletePastQuestions();
 
-      // if(_questionsFirestore.get())
-      // await _questionsFirestore.delete('2022-11-31');
-      //
+
       //Put objectToReturn a firestore
       await _questionsFirestore.insertQuestions(objectToReturn);
       return questions;

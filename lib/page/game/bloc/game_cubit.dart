@@ -48,10 +48,8 @@ class GameCubit extends Cubit<QuestionState> {
       }
 
       if (question.correct_answer == selectedAnswer) {
-        if (question.difficulty == "eazy")
-          score++;
-        else if (question.difficulty == "medium")
-          score += 2;
+        if (question.difficulty == "easy") score++;
+        else if (question.difficulty == "medium") score += 2;
         else if (question.difficulty == "hard") score += 3;
         emit(const GoodAnswer());
       }
