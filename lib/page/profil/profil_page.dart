@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_flutter/data/dataSources/repositories/user_repository.dart';
 import 'package:test_flutter/page/profil/bloc/profil_state.dart';
+
 import '../utils/utils.dart';
 import 'bloc/profil_cubit.dart';
 
@@ -21,7 +22,7 @@ class _ProfilPageState extends State<ProfilPage> {
   final nicknameController = TextEditingController();
 
   @override
-  void dispose(){
+  void dispose() {
     nicknameController.dispose();
     super.dispose();
   }
@@ -67,26 +68,41 @@ class _ProfilPageState extends State<ProfilPage> {
                       ),
                       ListTile(
                         title: Center(
-                            child: Text(state.user?.nickname ?? "Inconnu")),
+                            child: Text(
+                                state.user?.nickname ?? "Inconnu",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black
+                              ),
+                            ),),
                         subtitle: Center(
-                            child: Text("Score : " +
-                                (state.user?.score.toString() ?? "Inconnu"))),
+                            child: Text(
+                                "Score : " +
+                                (state.user?.score.toString() ?? "Inconnu"),
+                              style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              )
+                            )),
                       ),
                       ElevatedButton.icon(
-                          onPressed: () => cubit?.edit(),
-                          icon: const Icon(Icons.edit, size: 24),
-                          label: const Text(
+                        onPressed: () => cubit?.edit(),
+                        icon: const Icon(Icons.edit, size: 24),
+                        label: const Text(
                           'Editer',
-                          style : TextStyle(fontSize: 18),
-                          ),
-                          style: ElevatedButton.styleFrom(
+                          style: TextStyle(fontSize: 18),
+                        ),
+                        style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.black,
-                            shape: StadiumBorder()
-                          ),
+                            shape: StadiumBorder()),
                       ),
                       Center(
                         child: ListTile(
-                          title: Text('A propos'),
+                          title: Text(
+                              'A propos',
+                              style: TextStyle(
+                                  fontStyle: FontStyle.normal
+                              ),
+                          ),
                           subtitle: Text(
                               "Email : " + (state.user?.email ?? "Inconnu")),
                         ),
@@ -109,50 +125,67 @@ class _ProfilPageState extends State<ProfilPage> {
           //_currentResponse = [];
         },
         child: const Icon(
-            Icons.login_outlined,
-            color: Colors.white,
+          Icons.login_outlined,
+          color: Colors.white,
         ),
         backgroundColor: Colors.black,
       ));
 
-
-
-  Widget _edit(){
-    return Column(  mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const SizedBox(height: 40),
-          TextFormField(
+  Widget _edit() {
+    return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+      const SizedBox(height: 40),
+      Padding(
+          padding: EdgeInsets.only(left: 80, bottom: 20, right: 80, top: 10),
+          child: TextFormField(
             controller: nicknameController,
             cursorColor: Colors.white,
             textInputAction: TextInputAction.next,
-            decoration: const InputDecoration( label  : Text('Nickname ') ),
+            decoration: const InputDecoration(
+              enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.black),
+              ),
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.red),
+              ),
+              border: UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.black),
+              ),
+                label: Text(
+              'Nickname',
+              style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.normal
+              ),
+            ),
+            ),
             obscureText: false,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             validator: (nickname) =>
-            nickname == null
-                ? 'Enter a valid nickname'
-                : null,
+                nickname == null ? 'Enter a valid nickname' : null,
+          )),
+      const SizedBox(height: 40),
+      Padding(
+        padding: EdgeInsets.only(left: 80, bottom: 20, right: 80, top: 10),
+        child: ElevatedButton.icon(
+          style: ElevatedButton.styleFrom(
+            primary: const Color(0xFFe34d40),
+            minimumSize: const Size.fromHeight(50),
           ),
-          const SizedBox(height: 40),
-          ElevatedButton.icon(
-            style: ElevatedButton.styleFrom(
-              primary: const Color(0xFFe34d40),
-              minimumSize: const Size.fromHeight(50),
-            ),
-            icon : const Icon(Icons.lock_open , size: 32),
-            label: const Text(
-              'Sign In',
-              style : TextStyle(fontSize: 24),
-            ),
-            onPressed: update,
+          icon: const Icon(Icons.update, size: 32),
+          label: const Text(
+            'Valider',
+            style: TextStyle(fontSize: 24),
           ),
-          TextButton(
-              onPressed: () => cubit?.show(),
-              child: const Text('Retour au profil'   ,style: TextStyle( color: Color(0xFFe34d40) ))),
-        ]
-    );
+          onPressed: update,
+        ),
+      ),
+      TextButton(
+          onPressed: () => cubit?.show(),
+          child: const Text('Retour au profil',
+              style: TextStyle(color: Colors.black))),
+    ]);
   }
-
 
   Future update() async {
     showDialog(
@@ -161,13 +194,7 @@ class _ProfilPageState extends State<ProfilPage> {
       builder: (context) => const Center(child: CircularProgressIndicator()),
     );
 
-
-    try {
-      // await FirebaseAuth.instance.signInWithEmailAndPassword(
-      //   email : emailController.text.trim(),
-      //   password : passwordController.text.trim(),
-      // );
-    } on FirebaseAuthException catch (e) {
+    try {} on FirebaseAuthException catch (e) {
       print(e);
       Utils.showSnackBar(e.message);
     }

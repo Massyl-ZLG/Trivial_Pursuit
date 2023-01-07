@@ -1,14 +1,8 @@
-import 'dart:developer';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:test_flutter/data/dataSources/repositories/question_repository.dart';
-import 'package:test_flutter/widget/signup_widget.dart';
 
-import '../main.dart';
 import '../page/auth/login/forgot_password_page.dart';
 import '../page/utils/utils.dart';
 
@@ -46,7 +40,17 @@ class _LoginWidgetState extends State<LoginWidget> {
             controller: emailController,
             cursorColor: const Color(0xFFe34d40),
             textInputAction: TextInputAction.next,
-            decoration: const InputDecoration(label: Text('Email')),
+            decoration: const InputDecoration(
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black),
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red),
+                ),
+                border: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black),
+                ),
+                label: Text('Email')),
             obscureText: false,
           ),
           const SizedBox(height: 40),
@@ -54,7 +58,17 @@ class _LoginWidgetState extends State<LoginWidget> {
             controller: passwordController,
             cursorColor: const Color(0xFFe34d40),
             textInputAction: TextInputAction.next,
-            decoration: const InputDecoration(label: Text('Password')),
+            decoration: const InputDecoration(
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black),
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red),
+                ),
+                border: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black),
+                ),
+                label: Text('Password')),
             obscureText: true,
           ),
           const SizedBox(height: 20),
@@ -75,10 +89,11 @@ class _LoginWidgetState extends State<LoginWidget> {
             child: const Text(
               'Forgot Password?',
               style: TextStyle(
-                decoration: TextDecoration.underline,
-                color: Color(0xFFe34d40),
-                fontSize: 20,
-              ),
+                  decoration: TextDecoration.underline,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  fontStyle: FontStyle.normal),
             ),
             onTap: () => Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => ForgotPasswordPage())),
@@ -90,12 +105,14 @@ class _LoginWidgetState extends State<LoginWidget> {
               child: const Text('Sign Up',
                   style: TextStyle(
                       decoration: TextDecoration.underline,
-                      color: Color(0xFFe34d40)))),
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      fontStyle: FontStyle.normal))),
         ],
       ));
 
   Future signIn() async {
-
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(
