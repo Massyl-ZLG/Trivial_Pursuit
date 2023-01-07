@@ -29,9 +29,9 @@ class _GamePageState extends State<GamePage> {
   String _selectedAnswer = "";
 
   void createQuestion(Question question) {
-    /*_currentResponse = [...question.incorrect_answers, question.correct_answer]
-      ..shuffle()
-      ..toList();*/
+    // _currentResponse = [...question.incorrect_answers, question.correct_answer]
+    //   ..shuffle()
+    //   ..toList();
     _currentResponse =
         [...question.incorrect_answers, question.correct_answer].toList();
   }
@@ -109,7 +109,7 @@ class _GamePageState extends State<GamePage> {
                   }
                   if (state is Error) {
                     return Padding(
-                      padding: EdgeInsets.only(
+                      padding: const EdgeInsets.only(
                           left: 15, bottom: 20, right: 20, top: 10),
                       //apply padding to some sides only
                       child: Text(
@@ -129,7 +129,7 @@ class _GamePageState extends State<GamePage> {
                       ),
                     );
                   }
-                  return CircularProgressIndicator();
+                  return const CircularProgressIndicator();
                 },
               ))),
       floatingActionButton: FloatingActionButton(
@@ -219,7 +219,7 @@ class _GamePageState extends State<GamePage> {
   Widget _answerMessage(state) {
     if (state is WrongAnswer || state is GoodAnswer) {
       return Padding(
-        padding: EdgeInsets.only(left: 15, bottom: 20, right: 20, top: 10),
+        padding: const EdgeInsets.only(left: 15, bottom: 20, right: 20, top: 10),
         //apply padding to some sides only
         child: Text(
           state is GoodAnswer
@@ -233,7 +233,7 @@ class _GamePageState extends State<GamePage> {
               Shadow(
                 blurRadius: 10.0,
                 color: state is GoodAnswer ? Colors.blue : Colors.grey,
-                offset: Offset(5.0, 5.0),
+                offset: const Offset(5.0, 5.0),
               ),
             ],
           ),

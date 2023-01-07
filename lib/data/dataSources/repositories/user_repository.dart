@@ -26,4 +26,8 @@ class UserRepository {
   Future<TrivialUser?> setScore(String? uid , int score)  async {
     return await _usersFirestore.setScore(uid , score);
   }
+
+  Future<List<TrivialUser>?> search(String text)  async {
+    return await _usersFirestore.filterBy("nickname", text);
+  }
 }

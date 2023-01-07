@@ -19,7 +19,6 @@ class _HomeState extends State<Home> {
   final user = FirebaseAuth.instance.currentUser;
   var _showAppBar = false;
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

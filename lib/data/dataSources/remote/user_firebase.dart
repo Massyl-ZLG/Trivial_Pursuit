@@ -30,6 +30,13 @@ class UserFirebase {
   }
 
 
+  Future<List<TrivialUser>?> filterBy(String attribute ,String value ) async {
+    QuerySnapshot<TrivialUser> usersOrdered = await _userRef.where(attribute , isEqualTo: value  ).get();
+    List<TrivialUser> allData =  usersOrdered.docs.map((doc) => doc.data()).toList();
+    return allData;
+  }
+
+
   Future<TrivialUser?> get(String? uid) async {
     DocumentSnapshot<TrivialUser> user = await _userRef.doc(uid).get();
     return user.data();
