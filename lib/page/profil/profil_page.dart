@@ -136,6 +136,7 @@ class _ProfilPageState extends State<ProfilPage> {
           const SizedBox(height: 40),
           ElevatedButton.icon(
             style: ElevatedButton.styleFrom(
+              primary: const Color(0xFFe34d40),
               minimumSize: const Size.fromHeight(50),
             ),
             icon : const Icon(Icons.lock_open , size: 32),
@@ -147,7 +148,7 @@ class _ProfilPageState extends State<ProfilPage> {
           ),
           TextButton(
               onPressed: () => cubit?.show(),
-              child: Text('Retour au profil')),
+              child: const Text('Retour au profil'   ,style: TextStyle( color: Color(0xFFe34d40) ))),
         ]
     );
   }
