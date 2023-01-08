@@ -59,7 +59,7 @@ class _ProfilPageState extends State<ProfilPage> {
                                 radius: 80,
                                 backgroundColor: Colors.white,
                                 backgroundImage: NetworkImage(
-                                    'https://avatars.githubusercontent.com/u/81617366?v=4'),
+                                    'https://i0.wp.com/www.kimonosport.com/wp-content/uploads/2018/08/historia-de-jean-claude-van-damme-1024x575.jpg?resize=1020%2C573&ssl=1'),
                               ))
                         ],
                       ),
