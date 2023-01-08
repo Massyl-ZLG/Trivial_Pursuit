@@ -316,7 +316,7 @@ class _GamePageState extends State<GamePage> {
                     EdgeInsets.only(left: 15, bottom: 20, right: 20, top: 70),
                 //apply padding horizontal or vertical only
                 child: Text(
-                  "Félicitation ${user?.email.toString()} tu as un score ${cubit?.score.toString()}  !",
+                  "Félicitation tu as un score ${cubit?.score.toString()}  !",
                   textAlign: TextAlign.left,
                   style: const TextStyle(
                     color: Colors.black,

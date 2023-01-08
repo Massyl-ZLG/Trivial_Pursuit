@@ -94,18 +94,6 @@ class _ProfilPageState extends State<ProfilPage> {
                             backgroundColor: Colors.black,
                             shape: StadiumBorder()),
                       ),
-                      Center(
-                        child: ListTile(
-                          title: const Text(
-                              'A propos',
-                              style: TextStyle(
-                                  fontStyle: FontStyle.normal
-                              ),
-                          ),
-                          subtitle: Text(
-                              "Email : " + (state.user?.email ?? "Inconnu")),
-                        ),
-                      ),
                     ],
                   );
                 }

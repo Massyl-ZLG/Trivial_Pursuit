@@ -20,7 +20,6 @@ TrivialUser _$TrivialUserFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TrivialUser {
-  String get email => throw _privateConstructorUsedError;
   String get pseudo => throw _privateConstructorUsedError;
   int get score => throw _privateConstructorUsedError;
 
@@ -35,7 +34,7 @@ abstract class $TrivialUserCopyWith<$Res> {
   factory $TrivialUserCopyWith(
           TrivialUser value, $Res Function(TrivialUser) then) =
       _$TrivialUserCopyWithImpl<$Res>;
-  $Res call({String email, String pseudo, int score});
+  $Res call({String pseudo, int score});
 }
 
 /// @nodoc
@@ -48,15 +47,10 @@ class _$TrivialUserCopyWithImpl<$Res> implements $TrivialUserCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? email = freezed,
     Object? pseudo = freezed,
     Object? score = freezed,
   }) {
     return _then(_value.copyWith(
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
       pseudo: pseudo == freezed
           ? _value.pseudo
           : pseudo // ignore: cast_nullable_to_non_nullable
@@ -76,7 +70,7 @@ abstract class _$$_TrivialUserCopyWith<$Res>
           _$_TrivialUser value, $Res Function(_$_TrivialUser) then) =
       __$$_TrivialUserCopyWithImpl<$Res>;
   @override
-  $Res call({String email, String pseudo, int score});
+  $Res call({String pseudo, int score});
 }
 
 /// @nodoc
@@ -91,15 +85,10 @@ class __$$_TrivialUserCopyWithImpl<$Res> extends _$TrivialUserCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? email = freezed,
     Object? pseudo = freezed,
     Object? score = freezed,
   }) {
     return _then(_$_TrivialUser(
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
       pseudo: pseudo == freezed
           ? _value.pseudo
           : pseudo // ignore: cast_nullable_to_non_nullable
@@ -115,14 +104,11 @@ class __$$_TrivialUserCopyWithImpl<$Res> extends _$TrivialUserCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_TrivialUser implements _TrivialUser {
-  const _$_TrivialUser(
-      {required this.email, required this.pseudo, required this.score});
+  const _$_TrivialUser({required this.pseudo, required this.score});
 
   factory _$_TrivialUser.fromJson(Map<String, dynamic> json) =>
       _$$_TrivialUserFromJson(json);
 
-  @override
-  final String email;
   @override
   final String pseudo;
   @override
@@ -130,7 +116,7 @@ class _$_TrivialUser implements _TrivialUser {
 
   @override
   String toString() {
-    return 'TrivialUser(email: $email, pseudo: $pseudo, score: $score)';
+    return 'TrivialUser(pseudo: $pseudo, score: $score)';
   }
 
   @override
@@ -138,7 +124,6 @@ class _$_TrivialUser implements _TrivialUser {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TrivialUser &&
-            const DeepCollectionEquality().equals(other.email, email) &&
             const DeepCollectionEquality().equals(other.pseudo, pseudo) &&
             const DeepCollectionEquality().equals(other.score, score));
   }
@@ -147,7 +132,6 @@ class _$_TrivialUser implements _TrivialUser {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(email),
       const DeepCollectionEquality().hash(pseudo),
       const DeepCollectionEquality().hash(score));
 
@@ -166,15 +150,12 @@ class _$_TrivialUser implements _TrivialUser {
 
 abstract class _TrivialUser implements TrivialUser {
   const factory _TrivialUser(
-      {required final String email,
-      required final String pseudo,
+      {required final String pseudo,
       required final int score}) = _$_TrivialUser;
 
   factory _TrivialUser.fromJson(Map<String, dynamic> json) =
       _$_TrivialUser.fromJson;
 
-  @override
-  String get email;
   @override
   String get pseudo;
   @override

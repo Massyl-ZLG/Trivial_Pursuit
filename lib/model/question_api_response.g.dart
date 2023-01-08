@@ -17,7 +17,5 @@ _$_QuestionApiResponse _$$_QuestionApiResponseFromJson(
 Map<String, dynamic> _$$_QuestionApiResponseToJson(
         _$_QuestionApiResponse instance) =>
     <String, dynamic>{
-      'results': instance.results
-          .map((e) =>  e.toJson())
-          .toList(),
+      'results': instance.results,
     };

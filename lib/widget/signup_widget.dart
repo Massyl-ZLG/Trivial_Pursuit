@@ -137,7 +137,6 @@ class _SignUpWidgetState extends State<SignUpWidget> {
       ).then((cred) =>  {
           createUser(
             uid: cred.user?.uid,
-            email: emailController.text.trim(),
             pseudo: pseudoController.text.trim()
           ),
           context.goNamed('game')
@@ -148,12 +147,11 @@ class _SignUpWidgetState extends State<SignUpWidget> {
     }
   }
 
-  Future createUser({required String? uid , required String email , required String pseudo}) async {
+  Future createUser({required String? uid  , required String pseudo}) async {
     final docUser =   FirebaseFirestore.instance.collection('users').doc(uid);
 
     final TrivialUser user  = TrivialUser (
       pseudo: pseudo,
-      email: email,
       score : 0
     );
     final json = user.toJson();
