@@ -11,6 +11,7 @@ class UserRepository {
     return _instance!;
   }
 
+
   final UserFirebase _usersFirestore = UserFirebase.getInstance();
 
 
