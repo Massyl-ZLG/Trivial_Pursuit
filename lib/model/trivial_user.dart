@@ -12,7 +12,7 @@ class TrivialUser with _$TrivialUser {
   /// {@macro trivial_user}
   const factory TrivialUser({ 
     required String  email,
-    required String  nickname,
+    required String  pseudo,
     required int score,
   }) = _TrivialUser;
   

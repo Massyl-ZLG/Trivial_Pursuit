@@ -19,11 +19,11 @@ class _ProfilPageState extends State<ProfilPage> {
   ProfilCubit? cubit;
   final currentUser = FirebaseAuth.instance.currentUser;
 
-  final nicknameController = TextEditingController();
+  final pseudoController = TextEditingController();
 
   @override
   void dispose() {
-    nicknameController.dispose();
+    pseudoController.dispose();
     super.dispose();
   }
 
@@ -69,7 +69,7 @@ class _ProfilPageState extends State<ProfilPage> {
                       ListTile(
                         title: Center(
                             child: Text(
-                                state.user?.nickname ?? "Inconnu",
+                                state.user?.pseudo ?? "Inconnu",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black
@@ -137,7 +137,7 @@ class _ProfilPageState extends State<ProfilPage> {
       Padding(
           padding: EdgeInsets.only(left: 80, bottom: 20, right: 80, top: 10),
           child: TextFormField(
-            controller: nicknameController,
+            controller: pseudoController,
             cursorColor: Colors.white,
             textInputAction: TextInputAction.next,
             decoration: const InputDecoration(
@@ -151,7 +151,7 @@ class _ProfilPageState extends State<ProfilPage> {
                 borderSide: BorderSide(color: Colors.black),
               ),
                 label: Text(
-              'Nickname',
+              'pseudo',
               style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
@@ -161,8 +161,8 @@ class _ProfilPageState extends State<ProfilPage> {
             ),
             obscureText: false,
             autovalidateMode: AutovalidateMode.onUserInteraction,
-            validator: (nickname) =>
-                nickname == null ? 'Enter a valid nickname' : null,
+            validator: (pseudo) =>
+                pseudo == null ? 'Enter a valid pseudo' : null,
           )),
       const SizedBox(height: 40),
       Padding(

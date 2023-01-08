@@ -29,6 +29,6 @@ class UserRepository {
   }
 
   Future<List<TrivialUser>?> search(String text)  async {
-    return await _usersFirestore.filterBy("nickname", text);
+    return await _usersFirestore.filterBy("pseudo", text);
   }
 }

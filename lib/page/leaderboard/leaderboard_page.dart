@@ -115,7 +115,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                             Padding(
                               padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
                               //apply padding to LTRB, L:Left, T:Top, R:Right, B:Bottom
-                              child: Text(user.value?.nickname ?? "Inconnu",
+                              child: Text(user.value?.pseudo ?? "Inconnu",
                                   textAlign: TextAlign.start,
                                   style: rankingTextStyle(user.key)),
                             ),

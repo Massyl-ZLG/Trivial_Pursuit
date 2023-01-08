@@ -25,14 +25,14 @@ class SignUpWidget extends StatefulWidget {
 class _SignUpWidgetState extends State<SignUpWidget> {
   final formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
-  final nicknameController = TextEditingController();
+  final pseudoController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController =  TextEditingController();
 
   @override
   void dispose(){
     emailController.dispose();
-    nicknameController.dispose();
+    pseudoController.dispose();
     passwordController.dispose();
     confirmPasswordController.dispose();
     super.dispose();
@@ -48,15 +48,15 @@ class _SignUpWidgetState extends State<SignUpWidget> {
           children: [
             const SizedBox(height: 40),
             TextFormField(
-              controller: nicknameController,
+              controller: pseudoController,
               cursorColor: const Color(0xFFe34d40),
               textInputAction: TextInputAction.next,
-              decoration: const InputDecoration( label  : Text('Nickname *') ),
+              decoration: const InputDecoration( label  : Text('pseudo *') ),
               obscureText: false,
               autovalidateMode: AutovalidateMode.onUserInteraction,
-              validator: (nickname) =>
-              nickname == null
-                  ? 'Enter a valid nickname'
+              validator: (pseudo) =>
+              pseudo == null
+                  ? 'Enter a valid pseudo'
                   : null,
             ),
             const SizedBox(height: 40),
@@ -138,7 +138,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
           createUser(
             uid: cred.user?.uid,
             email: emailController.text.trim(),
-            nickname: nicknameController.text.trim()
+            pseudo: pseudoController.text.trim()
           ),
           context.goNamed('game')
       });
@@ -148,11 +148,11 @@ class _SignUpWidgetState extends State<SignUpWidget> {
     }
   }
 
-  Future createUser({required String? uid , required String email , required String nickname}) async {
+  Future createUser({required String? uid , required String email , required String pseudo}) async {
     final docUser =   FirebaseFirestore.instance.collection('users').doc(uid);
 
     final TrivialUser user  = TrivialUser (
-      nickname: nickname,
+      pseudo: pseudo,
       email: email,
       score : 0
     );
