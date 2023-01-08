@@ -70,16 +70,15 @@ class _ProfilPageState extends State<ProfilPage> {
                         title: Center(
                             child: Text(
                                 state.user?.pseudo ?? "Inconnu",
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black
                               ),
                             ),),
                         subtitle: Center(
                             child: Text(
-                                "Score : " +
-                                (state.user?.score.toString() ?? "Inconnu"),
-                              style: TextStyle(
+                                "Score : ${state.user?.score.toString() ?? "Inconnu"}",
+                              style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               )
                             )),
@@ -97,7 +96,7 @@ class _ProfilPageState extends State<ProfilPage> {
                       ),
                       Center(
                         child: ListTile(
-                          title: Text(
+                          title: const Text(
                               'A propos',
                               style: TextStyle(
                                   fontStyle: FontStyle.normal
@@ -124,11 +123,11 @@ class _ProfilPageState extends State<ProfilPage> {
           context.goNamed("login");
           //_currentResponse = [];
         },
+        backgroundColor: Colors.black,
         child: const Icon(
           Icons.login_outlined,
           color: Colors.white,
         ),
-        backgroundColor: Colors.black,
       ));
 
   Widget _edit() {
@@ -188,15 +187,6 @@ class _ProfilPageState extends State<ProfilPage> {
   }
 
   Future update() async {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => const Center(child: CircularProgressIndicator()),
-    );
-
-    try {} on FirebaseAuthException catch (e) {
-      print(e);
-      Utils.showSnackBar(e.message);
-    }
+    cubit?.updatePseudo( currentUser?.uid , pseudoController.text);
   }
 }

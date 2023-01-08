@@ -47,8 +47,12 @@ class UserFirebase {
     _userRef.doc(uid).update({"score" : (user.data()?.score! ?? 0 ) + score});
     return user.data();
   }
-  
-  
+
+  Future<TrivialUser?> setPseudo(String? uid , String pseudo) async {
+    DocumentSnapshot<TrivialUser> user = await _userRef.doc(uid).get();
+    _userRef.doc(uid).update({"pseudo" : pseudo});
+    return user.data();
+  }
 
 
 }

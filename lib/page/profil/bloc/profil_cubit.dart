@@ -32,4 +32,13 @@ class ProfilCubit extends Cubit<ProfilState> {
     emit(Edit());
   }
 
+  Future<void> updatePseudo(String? uid , String pseudo) async{
+    try {
+      final user = await repository.updatePseudo(uid ,  pseudo);
+      emit(Loaded(user));
+    } on Exception catch (exeption){
+      emit(Error(exeption.toString()));
+    }
+  }
+
 }

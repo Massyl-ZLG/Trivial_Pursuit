@@ -31,4 +31,11 @@ class UserRepository {
   Future<List<TrivialUser>?> search(String text)  async {
     return await _usersFirestore.filterBy("pseudo", text);
   }
+
+  Future<TrivialUser?> updatePseudo(String? uid , String pseudo)  async {
+    return await _usersFirestore.setPseudo(uid , pseudo);
+  }
+
+
+
 }
