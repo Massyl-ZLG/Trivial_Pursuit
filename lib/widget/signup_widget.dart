@@ -152,7 +152,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
 
     final TrivialUser user  = TrivialUser (
       pseudo: pseudo,
-      score : 0
+      score : 0,
+      played_at: ""
     );
     final json = user.toJson();
 
