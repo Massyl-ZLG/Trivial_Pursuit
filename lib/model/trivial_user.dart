@@ -11,8 +11,9 @@ part 'trivial_user.g.dart';
 class TrivialUser with _$TrivialUser {
   /// {@macro trivial_user}
   const factory TrivialUser({ 
-    required String pseudo,
+    required String? pseudo,
     required int score,
+    required String? played_at,
   }) = _TrivialUser;
   
     /// Creates a TrivialUser from Json map
